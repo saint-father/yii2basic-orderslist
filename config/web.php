@@ -8,6 +8,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'layout' => '@app/modules/OrdersList/views/layouts/orders_list',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -59,6 +60,14 @@ $config = [
                 '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>' => '<_m>/<_c>/view',
                 '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => '<_m>/<_c>/<_a>',
                 '<_m:[\w\-]+>/<_c:[\w\-]+>/<_a:[\w-]+>' => '<_m>/<_c>/<_a>',
+            ],
+        ],
+        'i18n' => [
+            'translations'=>[
+                'common*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath'=> '@app/messages',
+                ],
             ],
         ],
     ],

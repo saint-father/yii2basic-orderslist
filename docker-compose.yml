@@ -17,7 +17,7 @@ services:
       - orderslist
   db:
     platform: linux/x86_64
-    image: mysql:5.7
+    image: mysql:8.0
     ports:
       - 3306:3306
     container_name: orderslist-db
@@ -34,7 +34,7 @@ services:
     networks:
       - orderslist
   nginx:
-    image: nginx:1.17-alpine
+    image: nginx:latest
     container_name: orderslist-nginx
     restart: unless-stopped
     ports:
@@ -44,7 +44,16 @@ services:
       - ./docker-compose/nginx:/etc/nginx/conf.d
     networks:
       - orderslist
-
+  php:
+    image: php:7.4-fpm
+    expose:
+      - 9000
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/php/conf.d/20-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker-compose/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 networks:
   orderslist:
     driver: bridge

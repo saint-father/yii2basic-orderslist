@@ -2,6 +2,8 @@
 
 namespace app\modules\OrdersList\controllers;
 
+use app\modules\orders\models\searches\ServicesSearch;
+use app\modules\OrdersList\helpers\ServiceFilter as ServiceFilterHelper;
 use app\modules\OrdersList\models\Orders;
 use app\modules\OrdersList\models\OrdersSearch;
 use Yii;
@@ -14,6 +16,18 @@ use yii\filters\VerbFilter;
  */
 class OrdersController extends Controller
 {
+    private ServiceFilterHelper $serviceFilterHelper;
+
+    public function __construct(
+        $id,
+        $module,
+        $config = [],
+        ServiceFilterHelper $serviceFilterHelper
+    ) {
+        parent::__construct($id, $module, $config);
+        $this->serviceFilterHelper = $serviceFilterHelper;
+    }
+
     /**
      * @inheritDoc
      */
@@ -48,6 +62,7 @@ class OrdersController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'serviceHeaderFilterItems' => $this->serviceFilterHelper->getItems(),
         ]);
     }
 

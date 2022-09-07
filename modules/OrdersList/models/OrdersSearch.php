@@ -55,7 +55,7 @@ class OrdersSearch extends Orders
             return $dataProvider;
         }
 
-        $query->joinWith('user');
+        $query->joinWith(['user','service']);
 
         $dataProvider->sort->attributes['user'] = [
             'asc' => ['users.first_name' => SORT_ASC],

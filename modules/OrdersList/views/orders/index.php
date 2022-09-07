@@ -1,28 +1,32 @@
+<?php
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/custom.css" rel="stylesheet">
-  <style>
-    .label-default{
-      border: 1px solid #ddd;
-      background: none;
-      color: #333;
-      min-width: 30px;
-      display: inline-block;
-    }
-  </style>
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-</head>
-<body>
+use app\modules\OrdersList\models\Orders;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
+
+/** @var yii\web\View $this */
+/** @var app\modules\OrdersList\models\OrdersSearch $searchModel */
+/** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var array $serviceHeaderFilterItems */
+
+//$serviceHeaderFilterItems = [
+//    ['label' => 'Home', 'url' => ['site/index']],
+//    ['label' => 'About', 'url' => ['site/about']],
+//    ['label' => 'Contact', 'url' => ['site/contact']],
+//];
+$modeHeaderFilterItems = [
+    ['label' => '-Home1', 'url' => ['site/index']],
+    ['label' => '-About1', 'url' => ['site/about']],
+    ['label' => '-Contact1', 'url' => ['site/contact']],
+];
+
+
+$this->title = Yii::t('app', 'Orders');
+$this->params['breadcrumbs'][] = $this->title;
+?>
+
 <nav class="navbar navbar-fixed-top navbar-default">
 <!--  <div class="container-fluid">
     <div class="navbar-header">
@@ -41,6 +45,12 @@
   </div>
 -->
 </nav>
+<?= $this->render('widgets/orders_grid', [
+        'dataProvider' => $dataProvider,
+        'searchModel' => $searchModel,
+        'serviceHeaderFilterItems' => $serviceHeaderFilterItems,
+        'modeHeaderFilterItems' => $modeHeaderFilterItems,
+]) ?>
 <div class="container-fluid">
   <ul class="nav nav-tabs p-b">
     <li class="active"><a href="#">All orders</a></li>
@@ -186,7 +196,3 @@
 
   </div>
 </div>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-</body>
-<html>

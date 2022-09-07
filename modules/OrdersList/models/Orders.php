@@ -54,9 +54,9 @@ class Orders extends \yii\db\ActiveRecord
             'link' => Yii::t('app', 'Link'),
             'quantity' => Yii::t('app', 'Quantity'),
             'service_id' => Yii::t('app', 'Service ID'),
-            'status' => Yii::t('app', '0 - Pending, 1 - In progress, 2 - Completed, 3 - Canceled, 4 - Fail'),
+            'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
-            'mode' => Yii::t('app', '0 - Manual, 1 - Auto'),
+            'mode' => Yii::t('app', 'Mode'),
         ];
     }
 
