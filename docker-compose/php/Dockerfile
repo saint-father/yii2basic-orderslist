@@ -1,6 +1,6 @@
 FROM php:7.4-fpm
 
-# Arguments defined in docker-compose.yml
+# Arguments defined in _docker-compose.yml
 ARG user
 ARG uid
 
@@ -23,15 +23,6 @@ RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommen
 RUN printf "\n" | pecl install imagick
 RUN docker-php-ext-enable imagick
 RUN pecl install xdebug && docker-php-ext-enable xdebug
-
-RUN echo xdebug.mode=debug >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo xdebug.discover_client_host=false >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo xdebug.start_with_request=yes >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo xdebug.idekey=PHPSTORM >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo xdebug.client_host=host.docker.internal >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    # xdebug.client_host=host.docker.internal
-#    && echo xdebug.client_port=9000 >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

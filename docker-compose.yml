@@ -1,20 +1,7 @@
-version: "3.7"
+version: '3'
+
 services:
-  app:
-    build:
-      args:
-        user: user
-        uid: 1000
-      context: ./
-      dockerfile: Dockerfile
-    image: orderslist
-    container_name: orderslist-app
-    restart: unless-stopped
-    working_dir: /var/www/
-    volumes:
-      - ./:/var/www
-    networks:
-      - orderslist
+
   db:
     platform: linux/x86_64
     image: mysql:8.0
@@ -31,29 +18,40 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    depends_on:
+      - php
     networks:
       - orderslist
+
   nginx:
     image: nginx:latest
     container_name: orderslist-nginx
     restart: unless-stopped
     ports:
-      - 8000:80
+      - 8080:80
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d
     networks:
       - orderslist
+    depends_on:
+      - php
+
   php:
-    image: php:7.4-fpm
-    expose:
-      - 9000
+    container_name: orderslist-php
+    build:
+      args:
+        user: user
+        uid: 1000
+      context: ./docker-compose/php
     volumes:
       - ./:/var/www
-      - ./docker-compose/php/conf.d/20-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-      - ./docker-compose/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - ./docker-compose/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    environment:
+      - PHP_IDE_CONFIG=serverName=mytestservername
+    networks:
+      - orderslist
+
 networks:
   orderslist:
     driver: bridge
