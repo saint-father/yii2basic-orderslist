@@ -1,6 +1,6 @@
 <?php
 
-use app\modules\OrdersList\helpers\ServiceFilter;
+use app\modules\OrdersList\models\Services\ServiceFilterDataProvider;
 use app\modules\OrdersList\models\Orders;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -11,6 +11,8 @@ use yii\widgets\Menu;
 /** @var yii\web\View $this */
 /** @var app\modules\OrdersList\models\OrdersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var array $serviceHeaderFilterItems */
+/** @var array $modeHeaderFilterItems */
 
 $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;

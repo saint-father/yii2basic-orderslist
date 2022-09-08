@@ -32,39 +32,30 @@ class OrdersSearch extends Orders
     }
 
     /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
+     * @param $params
+     * @return OrdersQuery
      */
     public function search($params)
     {
         $query = Orders::find();
 
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
         $this->load($params);
 
         if (!$this->validate()) {
             $query->where('0=1');
-            return $dataProvider;
+            return $query;
         }
 
         $query->joinWith(['user','service']);
 
-        $dataProvider->sort->attributes['user'] = [
-            'asc' => ['users.first_name' => SORT_ASC],
-            'desc' => ['users.first_name' => SORT_DESC],
-        ];
-
-        if (empty($dataProvider->sort->getAttributeOrders())) {
-            $dataProvider->query->orderBy(['id' => SORT_DESC]);
-        }
+//        $dataProvider->sort->attributes['user'] = [
+//            'asc' => ['users.first_name' => SORT_ASC],
+//            'desc' => ['users.first_name' => SORT_DESC],
+//        ];
+//
+//        if (empty($dataProvider->sort->getAttributeOrders())) {
+//            $dataProvider->sort->attributes = ['id' => SORT_DESC];
+//        }
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -79,6 +70,41 @@ class OrdersSearch extends Orders
 
         $query->andFilterWhere(['like', 'link', $this->link]);
 
+        return $query;
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function getData($requestParams)
+    {
+        $query = $this->search($requestParams);
+        $countQuery = clone $query;
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'totalCount' => (int)$countQuery->count(),
+            'pagination' => [
+                'pageSize' => 10,
+                'forcePageParam' => false,
+                'pageSizeParam' => false,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ],
+        ]);
+
         return $dataProvider;
+    }
+
+    public function getStatuses($requestParams)
+    {
+        $query = $this->search($requestParams);
+
+        return $query->select(['status'])->distinct()->asArray()->all();
     }
 }

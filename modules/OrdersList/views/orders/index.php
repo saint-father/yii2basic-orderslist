@@ -10,18 +10,7 @@ use yii\grid\GridView;
 /** @var app\modules\OrdersList\models\OrdersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var array $serviceHeaderFilterItems */
-
-//$serviceHeaderFilterItems = [
-//    ['label' => 'Home', 'url' => ['site/index']],
-//    ['label' => 'About', 'url' => ['site/about']],
-//    ['label' => 'Contact', 'url' => ['site/contact']],
-//];
-$modeHeaderFilterItems = [
-    ['label' => '-Home1', 'url' => ['site/index']],
-    ['label' => '-About1', 'url' => ['site/about']],
-    ['label' => '-Contact1', 'url' => ['site/contact']],
-];
-
+/** @var array $modeHeaderFilterItems */
 
 $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
@@ -45,12 +34,17 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 -->
 </nav>
-<?= $this->render('widgets/orders_grid', [
-        'dataProvider' => $dataProvider,
-        'searchModel' => $searchModel,
-        'serviceHeaderFilterItems' => $serviceHeaderFilterItems,
-        'modeHeaderFilterItems' => $modeHeaderFilterItems,
-]) ?>
+<div class="container-fluid">
+
+    <?= $this->render('widgets/orders_grid', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'serviceHeaderFilterItems' => $serviceHeaderFilterItems,
+            'modeHeaderFilterItems' => $modeHeaderFilterItems,
+    ]) ?>
+</div>
+
+
 <div class="container-fluid">
   <ul class="nav nav-tabs p-b">
     <li class="active"><a href="#">All orders</a></li>

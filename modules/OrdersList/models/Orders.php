@@ -2,6 +2,8 @@
 
 namespace app\modules\OrdersList\models;
 
+use app\modules\OrdersList\models\Services\Services;
+use app\modules\OrdersList\models\Services\ServicesQuery;
 use Yii;
 
 /**

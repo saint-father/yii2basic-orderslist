@@ -7,7 +7,10 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'app\modules\OrdersList\Bootstrap',
+    ],
     'layout' => '@app/modules/OrdersList/views/layouts/orders_list',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -15,7 +18,6 @@ $config = [
     ],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'brY-tFfsApc6RZjkbsj_Cg5AZJa6r_ii',
         ],
         'cache' => [
@@ -50,16 +52,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                'contact' => 'site/contact',
-                '<_a:(about|error|captcha|login|logout)>' => 'site/<_a>',
-
-                '<_m:[\w\-]+>' => '<_m>/default/index',
-                '<_m:[\w\-]+>/<id:\d+>' => '<_m>/default/view',
-                '<_m:[\w\-]+>/<id:\d+>/<_a:[\w-]+>' => '<_m>/default/<_a>',
-                '<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
-                '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>' => '<_m>/<_c>/view',
-                '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => '<_m>/<_c>/<_a>',
-                '<_m:[\w\-]+>/<_c:[\w\-]+>/<_a:[\w-]+>' => '<_m>/<_c>/<_a>',
+                '<_a:(about|error|captcha|login|logout|contact)>' => 'site/<_a>',
             ],
         ],
         'i18n' => [
@@ -72,7 +65,7 @@ $config = [
         ],
     ],
     'params' => $params,
-    'modules' => $modules
+    'modules' => $modules,
 ];
 
 if (YII_ENV_DEV) {

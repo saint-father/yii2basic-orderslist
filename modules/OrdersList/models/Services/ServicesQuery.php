@@ -1,6 +1,8 @@
 <?php
 
-namespace app\modules\OrdersList\models;
+namespace app\modules\OrdersList\models\Services;
+
+use app\modules\OrdersList\models\Services\Services;
 
 /**
  * This is the ActiveQuery class for [[Services]].
@@ -35,14 +37,14 @@ class ServicesQuery extends \yii\db\ActiveQuery
     /**
      * @return ServicesQuery
      */
-    public function getCountedServices() : ServicesQuery
+    public function getServicesSelectItems() : ServicesQuery
     {
-        return $this->select(['services.id service_id',
-            'services.name service',
-            'count(o.service_id) service_count'])
+        return $this->select(['services.id value',
+            'services.name label',
+            'count(o.service_id) prefix'])
             ->innerJoin('orders o', 'o.service_id = services.id')
             ->innerJoin('users u', 'u.id = o.user_id ')
             ->groupBy('o.service_id')
-            ->orderBy('service_count desc');
+            ->orderBy('prefix desc');
     }
 }

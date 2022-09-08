@@ -3,9 +3,11 @@
 namespace app\modules\OrdersList\controllers;
 
 use app\modules\orders\models\searches\ServicesSearch;
-use app\modules\OrdersList\helpers\ServiceFilter as ServiceFilterHelper;
+use app\modules\OrdersList\models\Mode\ModeFilterDataProvider;
+use app\modules\OrdersList\models\Services\ServiceFilterDataProvider;
 use app\modules\OrdersList\models\Orders;
 use app\modules\OrdersList\models\OrdersSearch;
+use app\modules\OrdersList\models\Status\StatusFilterDataProvider;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -16,16 +18,22 @@ use yii\filters\VerbFilter;
  */
 class OrdersController extends Controller
 {
-    private ServiceFilterHelper $serviceFilterHelper;
+    private ServiceFilterDataProvider $serviceFilterDataProvider;
+    private ModeFilterDataProvider $modeFilterDataProvider;
+    private StatusFilterDataProvider $statusFilterDataProvider;
 
     public function __construct(
         $id,
         $module,
         $config = [],
-        ServiceFilterHelper $serviceFilterHelper
+        ServiceFilterDataProvider $serviceFilterDataProvider,
+        ModeFilterDataProvider $modeFilterDataProvider,
+        StatusFilterDataProvider $statusFilterDataProvider
     ) {
         parent::__construct($id, $module, $config);
-        $this->serviceFilterHelper = $serviceFilterHelper;
+        $this->serviceFilterDataProvider = $serviceFilterDataProvider;
+        $this->modeFilterDataProvider = $modeFilterDataProvider;
+        $this->statusFilterDataProvider = $statusFilterDataProvider;
     }
 
     /**
@@ -53,16 +61,18 @@ class OrdersController extends Controller
      */
     public function actionIndex()
     {
-//        var_dump(Yii::$app->getRequest()->getUserIP());
-//        xdebug_info();
-//        exit;
+        ini_set('memory_limit', 1170000000);
+
         $searchModel = new OrdersSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $requestParams = Yii::$app->request->get();
+        $dataProvider = $searchModel->getData($requestParams);
+        $statuses = $this->statusFilterDataProvider->getItems();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'serviceHeaderFilterItems' => $this->serviceFilterHelper->getItems(),
+            'serviceHeaderFilterItems' => $this->serviceFilterDataProvider->getItems(),
+            'modeHeaderFilterItems' => $this->modeFilterDataProvider->getItems(),
         ]);
     }
 
