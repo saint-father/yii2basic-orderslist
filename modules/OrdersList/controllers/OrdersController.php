@@ -73,6 +73,7 @@ class OrdersController extends Controller
             'dataProvider' => $dataProvider,
             'serviceHeaderFilterItems' => $this->serviceFilterDataProvider->getItems(),
             'modeHeaderFilterItems' => $this->modeFilterDataProvider->getItems(),
+            'statuses' => $statuses
         ]);
     }
 

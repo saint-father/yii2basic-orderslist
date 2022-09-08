@@ -5,12 +5,14 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var app\modules\OrdersList\models\OrdersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var array $serviceHeaderFilterItems */
 /** @var array $modeHeaderFilterItems */
+/** @var array $statuses */
 
 $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
@@ -36,12 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
 </nav>
 <div class="container-fluid">
     <ul class="nav nav-tabs p-b">
-        <li <?= !isset($param['status']) ? 'class="active"' : '' ?>>
-            <?= Html::a(Yii::t('common', 'All orders'), ['/orders']) ?>
-        </li>
-        <?php foreach ($statuses as $status_id => $status) : ?>
-            <li <?= isset($param['status']) ? ($param['status'] ==  $status_id ? 'class="active"' : '' ) : '' ?> >
-                <?= Html::a($status, ['/orders', 'status' => $status_id]) ?>
+        <?php foreach ($statuses as $status) : ?>
+            <li class="<?= $status['active'] ?>">
+                <?= Html::a($status['label'], $status['url']) ?>
             </li>
         <?php endforeach; ?>
         <li class="pull-right custom-search">
@@ -61,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => isset($param['search']) ? $param['search'] : ''
                 ]) ?>
                 <span class="input-group-btn search-select-wrap">
-            <?= Html::dropDownList('searchType', isset($param['searchType']) ? $param['searchType'] : 1, $search, ['class' => 'form-control search-select']) ?>
+            <?php //Html::dropDownList('searchType', isset($param['searchType']) ? $param['searchType'] : 1, $search, ['class' => 'form-control search-select']) ?>
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>

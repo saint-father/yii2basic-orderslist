@@ -10,9 +10,12 @@ class OrdersListUrlRule extends BaseObject implements UrlRuleInterface
 
     public function createUrl($manager, $route, $params)
     {
-        if ($route === 'orderslist/orders/index') {
+        if (strpos($route, 'orderslist/orders') !== false) {
             if (isset($params['page'])) {
                 return 'orderslist/orders/page-' . $params['page'];
+            }
+            if (isset($params['status'])) {
+                return 'orderslist/orders/status-' . $params['status'];
             }
         }
         return false;  // данное правило не применимо

@@ -20,6 +20,7 @@ class Bootstrap implements BootstrapInterface
                 '<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
                 '<_m:[\w\-]+>/<_c:[\w\-]+>/<page:\d+>' => '<_m>/<_c>/index',
                 '<_m:[\w\-]+>/<_c:[\w\-]+>/page-<page:\d+>' => '<_m>/<_c>/index',
+                '<_m:[\w\-]+>/<_c:[\w\-]+>/status-<status:\d+>' => '<_m>/<_c>/index',
             ]
         );
     }
