@@ -1,16 +1,17 @@
 <?php
 
-namespace app\modules\OrdersList\models\Status;
+namespace app\modules\OrdersList\models\DataProviders;
 
+use app\modules\OrdersList\helpers\AbstractFilterDecorator;
 use app\modules\OrdersList\helpers\StatusFilterDecorator;
-use app\modules\OrdersList\models\AbstractFilterDataProvider;
+use app\modules\OrdersList\models\DataProviders\AbstractFilterDataProvider;
 
 class StatusFilterDataProvider extends AbstractFilterDataProvider
 {
     public function __construct(
         StatusFilterDecorator $serviceFilterDecorator
     ) {
-        $this->filterDecorator = $serviceFilterDecorator;
+        $this->filterDecorator = AbstractFilterDecorator::get('StatusFilterDecorator');
     }
 
     /**

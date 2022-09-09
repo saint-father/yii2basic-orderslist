@@ -1,16 +1,22 @@
 <?php
 
-namespace app\modules\OrdersList\models\Services;
+namespace app\modules\OrdersList\models\DataProviders;
 
 use app\modules\OrdersList\helpers\ServiceFilterDecorator;
+use app\modules\OrdersList\models\Services\Services;
 
-class ServiceFilterDataProvider
+class ServiceFilterDataProvider extends AbstractFilterDataProvider
 {
 
     public function __construct(
         ServiceFilterDecorator $serviceFilterDecorator
     ) {
         $this->filterDecorator = $serviceFilterDecorator;
+    }
+
+    public static function init()
+    {
+        die('88888');
     }
 
     private function getQuery()

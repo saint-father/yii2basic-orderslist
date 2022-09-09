@@ -1,6 +1,8 @@
 <?php
 
-namespace app\modules\OrdersList\models;
+namespace app\modules\OrdersList\models\Orders;
+
+use app\modules\OrdersList\models\Orders\Orders;
 
 /**
  * This is the ActiveQuery class for [[Orders]].

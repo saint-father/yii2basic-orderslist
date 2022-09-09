@@ -49,7 +49,7 @@ OrdersListAsset::register($this);
             <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <?= Html::a(Yii::t('common', 'Orders'), ['/orders']) ?>
+                        <?= Html::a(Yii::t('common', 'Orders'), ['/orderslist/orders']) ?>
                     </li>
                 </ul>
             </div>

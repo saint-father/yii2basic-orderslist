@@ -1,6 +1,8 @@
 <?php
 
-namespace app\modules\OrdersList\models;
+namespace app\modules\OrdersList\models\Users;
+
+use app\modules\OrdersList\models\Users\Users;
 
 /**
  * This is the ActiveQuery class for [[Users]].

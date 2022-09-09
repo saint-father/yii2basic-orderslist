@@ -1,13 +1,14 @@
 <?php
 
-namespace app\modules\OrdersList\models;
+namespace app\modules\OrdersList\models\Orders;
 
+use app\modules\OrdersList\models\Orders\OrdersQuery;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\OrdersList\models\Orders;
+use app\modules\OrdersList\models\Orders\Orders;
 
 /**
- * OrdersSearch represents the model behind the search form of `app\modules\OrdersList\models\Orders`.
+ * OrdersSearch represents the model behind the search form of `app\modules\OrdersList\models\Orders\Orders`.
  */
 class OrdersSearch extends Orders
 {

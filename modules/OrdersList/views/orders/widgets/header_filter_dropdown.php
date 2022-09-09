@@ -1,5 +1,9 @@
 <?php
 
+/** @var array $headerFilterItems */
+/** @var string $headerTitle */
+/** @var string $headerButtonId */
+
 use yii\helpers\Html;
 use yii\widgets\Menu;
 ?>

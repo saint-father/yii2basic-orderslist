@@ -1,7 +1,10 @@
 <?php
 
-namespace app\modules\OrdersList\models;
+namespace app\modules\OrdersList\models\Users;
 
+use app\modules\OrdersList\models\Orders\Orders;
+use app\modules\OrdersList\models\Orders\OrdersQuery;
+use app\modules\OrdersList\models\Users\UsersQuery;
 use Yii;
 
 /**

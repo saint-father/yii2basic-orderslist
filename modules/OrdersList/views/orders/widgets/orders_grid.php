@@ -1,7 +1,8 @@
 <?php
 
-use app\modules\OrdersList\models\Services\ServiceFilterDataProvider;
-use app\modules\OrdersList\models\Orders;
+use app\modules\OrdersList\models\DataProviders\ServiceFilterDataProvider;
+use app\modules\OrdersList\models\Orders\Orders;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -9,10 +10,11 @@ use yii\grid\GridView;
 use yii\widgets\Menu;
 
 /** @var yii\web\View $this */
-/** @var app\modules\OrdersList\models\OrdersSearch $searchModel */
+/** @var \app\modules\OrdersList\models\Orders\OrdersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var array $serviceHeaderFilterItems */
 /** @var array $modeHeaderFilterItems */
+/** @var array $statusesItems */
 
 $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
@@ -20,9 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'layout' => "{items}\n{sorter}\n{summary}\n{pager}",
-        'tableOptions' => [
+    'dataProvider' => $dataProvider,
+    'layout' => "{items}\n{summary}\n{pager}",
+    'summary' => "{begin} to {end} of {totalCount}",
+    'tableOptions' => [
             'class' => 'table order-table'
         ],
         'columns' => [
@@ -49,15 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'label' => 'Status',
-                'value' => function ($model) {
-                    return $model->status;
+                'value' => function ($model) use ($statusesItems){
+                    return ArrayHelper::getValue(ArrayHelper::map($statusesItems,'value','label'), $model->status, 'not set');
                 },
-            ],
-            [
-                'attribute' => 'created_at',
-                'value'=>function($model){
-                    return date("Y-m-d H:i:s",$model->created_at);
-                }
             ],
             [
                 'attribute' => 'mode',
@@ -67,15 +64,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'headerButtonId' => 'modeDropdownFilterBtn',
                     'headerFilterItems' => $modeHeaderFilterItems,
                 ]),
-                'value' => function ($model) {
-                    return $model->mode;
+                'value' => function ($model) use ($modeHeaderFilterItems){
+                    return ArrayHelper::getValue(ArrayHelper::map($modeHeaderFilterItems,'value','label'), $model->mode, 'not set');
                 },
             ],
-//            [
-//                'class' => ActionColumn::className(),
-//                'urlCreator' => function ($action, Orders $model, $key, $index, $column) {
-//                    return Url::toRoute([$action, 'id' => $model->id]);
-//                 }
-//            ],
+            [
+                'attribute' => 'created_at',
+                'value'=>function($model){
+                    return date("Y-m-d H:i:s",$model->created_at);
+                }
+            ],
         ],
     ]); ?>

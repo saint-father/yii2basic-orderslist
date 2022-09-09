@@ -1,9 +1,12 @@
 <?php
 
-namespace app\modules\OrdersList\models;
+namespace app\modules\OrdersList\models\Orders;
 
+use app\modules\OrdersList\models\Orders\OrdersQuery;
 use app\modules\OrdersList\models\Services\Services;
 use app\modules\OrdersList\models\Services\ServicesQuery;
+use app\modules\OrdersList\models\Users\Users;
+use app\modules\OrdersList\models\Users\UsersQuery;
 use Yii;
 
 /**
@@ -19,7 +22,7 @@ use Yii;
  * @property int $mode 0 - Manual, 1 - Auto
  *
  * @property Services $service
- * @property Users $user
+ * @property \app\modules\OrdersList\models\Users\Users $user
  */
 class Orders extends \yii\db\ActiveRecord
 {
@@ -75,7 +78,7 @@ class Orders extends \yii\db\ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery|UsersQuery
+     * @return \yii\db\ActiveQuery|\app\modules\OrdersList\models\Users\UsersQuery
      */
     public function getUser()
     {

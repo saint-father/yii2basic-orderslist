@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\OrdersList\models\Mode;
+namespace app\modules\OrdersList\models\DataProviders;
 
 use app\modules\OrdersList\helpers\ModeFilterDecorator;
-use app\modules\OrdersList\models\AbstractFilterDataProvider;
+use app\modules\OrdersList\models\DataProviders\AbstractFilterDataProvider;
 
 class ModeFilterDataProvider extends AbstractFilterDataProvider
 {

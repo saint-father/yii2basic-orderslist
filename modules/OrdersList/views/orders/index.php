@@ -1,6 +1,8 @@
 <?php
 
-use app\modules\OrdersList\models\Orders;
+use app\modules\OrdersList\models\Orders\Orders;
+use app\modules\OrdersList\models\Orders\OrdersSearch;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -8,33 +10,27 @@ use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\modules\OrdersList\models\OrdersSearch $searchModel */
+/** @var OrdersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var array $serviceHeaderFilterItems */
 /** @var array $modeHeaderFilterItems */
 /** @var array $statuses */
+/** @var array $requestParams */
+/** @var array $searchTypes */
 
 $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <nav class="navbar navbar-fixed-top navbar-default">
-<!--  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
+  <div class="container-fluid">
     <div class="collapse navbar-collapse" id="bs-navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Orders</a></li>
+        <li class="active"><?= Html::a(Yii::t('common', 'Orders'), Url::current()) ?></li>
       </ul>
     </div>
   </div>
--->
+
 </nav>
 <div class="container-fluid">
     <ul class="nav nav-tabs p-b">
@@ -46,21 +42,21 @@ $this->params['breadcrumbs'][] = $this->title;
         <li class="pull-right custom-search">
             <?php $form = ActiveForm::begin([
                 'method' => 'get',
-                'action' => ['/orders'],
+                'action' => [Url::current(['search' => null, 'searchType' => null])],
                 'options' => ['class' => 'form-inline'],
             ]) ?>
             <div class="input-group">
-                <?= isset($param['status'])
-                    ? Html::tag('input', '', ['type' => 'hidden', 'name' => 'status', 'value' => $param['status']])
-                    : ''  ?>
                 <?=Html::tag('input','',['type' => 'text',
                     'name' => 'search',
                     'class' => 'form-control',
                     'placeholder' =>  Yii::t('common', 'Search orders'),
-                    'value' => isset($param['search']) ? $param['search'] : ''
+                    'value' => ArrayHelper::getValue($requestParams, 'search', '')
                 ]) ?>
                 <span class="input-group-btn search-select-wrap">
-            <?php //Html::dropDownList('searchType', isset($param['searchType']) ? $param['searchType'] : 1, $search, ['class' => 'form-control search-select']) ?>
+            <?= $this->render('widgets/search_types_filter_dropdown', [
+                'searchTypes' => $searchTypes,
+                'requestParams' => $requestParams,
+            ]); ?>
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
@@ -70,14 +66,15 @@ $this->params['breadcrumbs'][] = $this->title;
         </li>
     </ul>
     <?= $this->render('widgets/orders_grid', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-            'serviceHeaderFilterItems' => $serviceHeaderFilterItems,
-            'modeHeaderFilterItems' => $modeHeaderFilterItems,
+        'dataProvider' => $dataProvider,
+        'searchModel' => $searchModel,
+        'serviceHeaderFilterItems' => $serviceHeaderFilterItems,
+        'modeHeaderFilterItems' => $modeHeaderFilterItems,
+        'statusesItems' => $statuses,
     ]) ?>
 </div>
 
-
+<!--
 <div class="container-fluid">
   <ul class="nav nav-tabs p-b">
     <li class="active"><a href="#">All orders</a></li>
@@ -223,3 +220,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
   </div>
 </div>
+-->

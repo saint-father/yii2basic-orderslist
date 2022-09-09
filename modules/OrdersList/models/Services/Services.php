@@ -2,8 +2,8 @@
 
 namespace app\modules\OrdersList\models\Services;
 
-use app\modules\OrdersList\models\Orders;
-use app\modules\OrdersList\models\OrdersQuery;
+use app\modules\OrdersList\models\Orders\Orders;
+use app\modules\OrdersList\models\Orders\OrdersQuery;
 use app\modules\OrdersList\models\Services\ServicesQuery;
 use Yii;
 
@@ -50,7 +50,7 @@ class Services extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Orders]].
      *
-     * @return \yii\db\ActiveQuery|OrdersQuery
+     * @return \yii\db\ActiveQuery|\app\modules\OrdersList\models\Orders\OrdersQuery
      */
     public function getOrders()
     {
