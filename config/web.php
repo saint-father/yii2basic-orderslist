@@ -10,7 +10,7 @@ $config = [
     'language' => 'ru-RU',
     'bootstrap' => [
         'log',
-        'app\modules\OrdersList\Bootstrap',
+        'app\modules\ordersList\Bootstrap',
     ],
     'layout' => '@app/modules/ordersList/views/layouts/orders_list',
     'aliases' => [
@@ -52,8 +52,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '' => 'site/index',
-                '<_a:(about|error|captcha|login|logout|contact)>' => 'site/<_a>',
+                '' => 'orderslist/orders',
             ],
         ],
         'i18n' => [

@@ -1,0 +1,106 @@
+<?php
+
+namespace app\modules\ordersList\models\dataProviders\decorators;
+
+use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
+
+abstract class AbstractFilterDecorator implements FilterDecoratorInterface
+{
+    /**
+     * @var string
+     */
+    protected string $urlParam = '';
+    /**
+     * @var string
+     */
+    protected string $activeText = 'true';
+
+    /**
+     * Initialize decorator instance by class name
+     *
+     * @param string $decoratorName
+     * @return FilterDecoratorInterface
+     */
+    public static function init(string $decoratorName) : FilterDecoratorInterface
+    {
+        $decoratorName = __NAMESPACE__ . '\\' . $decoratorName;
+        /** @var FilterDecoratorInterface $decorator */
+        $decorator = new $decoratorName();
+
+        return $decorator->setFilterParam();
+    }
+
+    /**
+     * Set URL param name for links
+     *
+     * @return FilterDecoratorInterface
+     */
+    abstract public function setFilterParam() : FilterDecoratorInterface;
+
+    /**
+     * Get URL param name for links
+     *
+     * @return array|mixed
+     */
+    public function getFilterParam()
+    {
+        return Yii::$app->request->get($this->urlParam);
+    }
+
+    /**
+     * Data structure decorator for the first item of selector
+     *
+     * @param array $item
+     * @return array
+     * @throws \Exception
+     */
+    public function firstItemDecorator(array $item) : array
+    {
+        $param = $this->getFilterParam();
+
+        return [
+            'label' => Yii::t('common', ArrayHelper::getValue($item, 'label.text', 'All')),
+            'url' => [Url::current([$this->urlParam => ArrayHelper::getValue($item, 'value')])],
+            'active' => !isset($param) ? $this->activeText : ''
+        ];
+    }
+
+    /**
+     * Data structure decorator for selector item
+     *
+     * @param array $item
+     * @return array
+     * @throws \Exception
+     */
+    public function itemDecorator(array $item) : array
+    {
+        $param = $this->getFilterParam();
+
+        return [
+            'label' => Yii::t('common',
+                ArrayHelper::getValue($item, 'label.text') ?? ArrayHelper::getValue($item, 'label', '--')
+            ),
+            'url' => [Url::current([$this->urlParam => $item['value']])],
+            'active' => (isset($param) && $param == $item['value']) ? $this->activeText : '',
+            'value' => $item['value'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function itemsDecorator(array $itemsArray) : array
+    {
+        $menu = [];
+        $firstItem = array_shift($itemsArray);
+        $menu[] = $this->firstItemDecorator($firstItem);
+
+        foreach ($itemsArray as $item) {
+            $menu[] = $this->itemDecorator($item);
+        }
+
+        return $menu;
+    }
+}
