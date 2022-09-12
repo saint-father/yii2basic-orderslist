@@ -39,6 +39,6 @@ class OrdersController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index', OrdersFacade::get(Yii::$app->request->get())->getViewConfig());
+        return $this->render('index', OrdersFacade::init(Yii::$app->request->get())->getViewConfig());
     }
 }

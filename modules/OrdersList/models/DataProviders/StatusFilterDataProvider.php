@@ -2,18 +2,12 @@
 
 namespace app\modules\OrdersList\models\DataProviders;
 
-use app\modules\OrdersList\helpers\AbstractFilterDecorator;
-use app\modules\OrdersList\helpers\StatusFilterDecorator;
+use app\modules\OrdersList\models\DataProviders\Decorators\AbstractFilterDecorator;
+use app\modules\OrdersList\models\DataProviders\Decorators\StatusFilterDecorator;
 use app\modules\OrdersList\models\DataProviders\AbstractFilterDataProvider;
 
 class StatusFilterDataProvider extends AbstractFilterDataProvider
 {
-    public function __construct(
-        StatusFilterDecorator $serviceFilterDecorator
-    ) {
-        $this->filterDecorator = AbstractFilterDecorator::get('StatusFilterDecorator');
-    }
-
     /**
      * 0 - Pending, 1 - In progress, 2 - Completed, 3 - Canceled, 4 - Fail
      *
@@ -22,11 +16,11 @@ class StatusFilterDataProvider extends AbstractFilterDataProvider
     public function getEntities() : array
     {
         return [
-            ['label' => 'Pending',      'value' => 0],
-            ['label' => 'In progress',  'value' => 1],
-            ['label' => 'Completed',    'value' => 2],
-            ['label' => 'Canceled',     'value' => 3],
-            ['label' => 'Fail',         'value' => 4],
+            ['label' => 'orders.pending_status',      'value' => 0],
+            ['label' => 'orders.in_progress_status',  'value' => 1],
+            ['label' => 'orders.completed_status',    'value' => 2],
+            ['label' => 'orders.canceled_status',     'value' => 3],
+            ['label' => 'orders.fail_status',         'value' => 4],
         ];
     }
 }

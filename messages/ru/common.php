@@ -18,9 +18,10 @@ return [
     'orders.status'=> 'Статус',
     'orders.mode'=> 'Режим',
     'orders.link' => 'Ссылка',
-    'orders.created' => 'Создано',
+    'orders.created_at' => 'Создано',
     'All'=> 'Все',
     'orders.manual_mode'=> 'Ручной',
     'orders.auto_mode'=> 'Авто',
     'Save result' => 'Сохранить в файл',
+    '{begin} to {end} of {totalCount}' => 'от {begin} до {end} из {totalCount}',
 ];

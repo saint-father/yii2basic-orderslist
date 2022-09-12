@@ -2,8 +2,13 @@
 
 namespace app\modules\OrdersList\interfaces;
 
+use app\modules\OrdersList\models\DataProviders\Decorators\FilterDecoratorInterface;
+
 interface FilterDataProviderInterface
 {
+    public static function init(string $providerName, array $config = []);
+
+    public function setDecorator(FilterDecoratorInterface $decorator) : self;
 
     public function getEntities() : array;
 

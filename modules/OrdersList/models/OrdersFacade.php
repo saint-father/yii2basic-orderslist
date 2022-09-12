@@ -3,10 +3,12 @@
 namespace app\modules\OrdersList\models;
 
 use app\modules\OrdersList\models\DataProviders\AbstractFilterDataProvider;
+use app\modules\OrdersList\models\DataProviders\Decorators\AbstractFilterDecorator;
 use app\modules\OrdersList\models\DataProviders\ModeFilterDataProvider;
 use app\modules\OrdersList\models\DataProviders\SearchTypeSelectorDataProvider;
 use app\modules\OrdersList\models\DataProviders\ServiceFilterDataProvider;
 use app\modules\OrdersList\models\DataProviders\StatusFilterDataProvider;
+use app\modules\OrdersList\models\Orders\OrdersDataProvider;
 use app\modules\OrdersList\models\Orders\OrdersSearch;
 
 class OrdersFacade
@@ -29,36 +31,51 @@ class OrdersFacade
 //    ) {
 //    }
 
-    public static function get(array $requestParams) : self
+    public static function init(array $requestParams) : self
     {
         self::$requestParams = $requestParams;
-        self::$serviceFilterDataProvider = AbstractFilterDataProvider::get('ServiceFilterDataProvider');
-//        self::modeFilterDataProvider = ModeFilterDataProvider;
-//        self::statusFilterDataProvider = StatusFilterDataProvider;
-//        self::searchTypeSelectorDataProvider = SearchTypeSelectorDataProvider;
+
+        $serviceDecorator = AbstractFilterDecorator::init('ServiceFilterDecorator');
+        self::$serviceFilterDataProvider = AbstractFilterDataProvider::init(
+            'ServiceFilterDataProvider',
+            ['decorator' => $serviceDecorator]
+        );
+
+        $modeDecorator = AbstractFilterDecorator::init('ModeFilterDecorator');
+        self::$modeFilterDataProvider = AbstractFilterDataProvider::init(
+            'ModeFilterDataProvider',
+            ['decorator' => $modeDecorator]
+        );
+
+        $statusDecorator = AbstractFilterDecorator::init('StatusFilterDecorator');
+        self::$statusFilterDataProvider = AbstractFilterDataProvider::init(
+            'StatusFilterDataProvider',
+            ['decorator' => $statusDecorator]
+        );
+
+        $searchTypeFilterDecorator = AbstractFilterDecorator::init('SearchTypeFilterDecorator');
+        self::$searchTypeSelectorDataProvider = AbstractFilterDataProvider::init(
+            'SearchTypeSelectorDataProvider',
+            ['decorator' => $searchTypeFilterDecorator]
+        );
 
         return new self();
     }
-
-//    private function init()
-//    {
-//
-//    }
 
     public function getViewConfig() : array
     {
         ini_set('memory_limit', 1170000000);
 
-        $searchModel = new OrdersSearch();
+        $searchModel = OrdersDataProvider::init(self::$requestParams);
 
         return [
             'searchModel' => $searchModel,
             'dataProvider' => $searchModel->getData(self::$requestParams),
             'serviceHeaderFilterItems' => self::$serviceFilterDataProvider->getItems(),
-            'modeHeaderFilterItems' => $this->modeFilterDataProvider->getItems(),
-            'statuses' => $this->statusFilterDataProvider->getItems(),
+            'modeHeaderFilterItems' => self::$modeFilterDataProvider->getItems(),
+            'statuses' => self::$statusFilterDataProvider->getItems(),
             'requestParams' => self::$requestParams,
-            'searchTypes' => $this->searchTypeSelectorDataProvider->getItems(),
+            'searchTypes' => self::$searchTypeSelectorDataProvider->getItems(),
         ];
     }
 }

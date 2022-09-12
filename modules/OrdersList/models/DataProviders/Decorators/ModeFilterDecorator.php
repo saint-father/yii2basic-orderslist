@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\OrdersList\helpers;
+namespace app\modules\OrdersList\models\DataProviders\Decorators;
 
 use Yii;
 
@@ -8,9 +8,11 @@ class ModeFilterDecorator extends AbstractFilterDecorator
 {
     const URL_PARAM = 'mode';
 
-    public function __construct()
+    public function setFilterParam() : FilterDecoratorInterface
     {
         $this->urlParam = self::URL_PARAM;
+
+        return $this;
     }
 
     public function itemDecorator(array $item) : array

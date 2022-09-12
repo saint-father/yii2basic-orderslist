@@ -18,9 +18,10 @@ return [
     'orders.status'=> 'Status',
     'orders.mode'=> 'Mode',
     'orders.link' => 'Link',
-    'orders.created' => 'Created',
+    'orders.created_at' => 'Created',
     'All'=> 'All',
     'orders.manual_mode'=> 'Manual',
     'orders.auto_mode'=> 'Auto',
     'Save result' => 'Save result',
+    '{begin} to {end} of {totalCount}' => '{begin} to {end} of {totalCount}',
 ];

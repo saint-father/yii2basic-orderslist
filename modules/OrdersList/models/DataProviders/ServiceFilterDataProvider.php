@@ -2,23 +2,12 @@
 
 namespace app\modules\OrdersList\models\DataProviders;
 
-use app\modules\OrdersList\helpers\ServiceFilterDecorator;
+use app\modules\OrdersList\models\DataProviders\Decorators\ServiceFilterDecorator;
+use app\modules\OrdersList\interfaces\FilterDataProviderInterface;
 use app\modules\OrdersList\models\Services\Services;
 
 class ServiceFilterDataProvider extends AbstractFilterDataProvider
 {
-
-    public function __construct(
-        ServiceFilterDecorator $serviceFilterDecorator
-    ) {
-        $this->filterDecorator = $serviceFilterDecorator;
-    }
-
-    public static function init()
-    {
-        die('88888');
-    }
-
     private function getQuery()
     {
         return Services::find()->getServicesSelectItems();
@@ -32,14 +21,33 @@ class ServiceFilterDataProvider extends AbstractFilterDataProvider
     public function getItems(): array
     {
         $itemsArray = $this->getEntities();
-        $count = $this->getQuery()->sum('prefix');
-        $menu = [];
-        $menu[] = $this->filterDecorator->firstItemDecorator(['label' => ['suffix' => $count], 'value' => null]);
 
-        foreach ($itemsArray as $item) {
-            $menu[] = $this->filterDecorator->itemDecorator(['label' => ['prefix' => $item['prefix'], 'text' => $item['label']], 'value' => $item['value']]);
+        if(empty($this->filterDecorator)) {
+            return $itemsArray;
         }
 
+        $count = $this->getQuery()->sum('prefix');
+        array_map(fn($item): array => [
+            'label' => ['prefix' => $item['prefix'], 'text' => $item['label']],
+            'value' => $item['value']
+        ], $itemsArray);
+        array_unshift($itemsArray, ['label' => ['suffix' => $count], 'value' => null]);
+
+//        foreach ($itemsArray as $item) {
+//            $menu[] = $this->filterDecorator->itemDecorator(
+//                ['label' => ['prefix' => $item['prefix'], 'text' => $item['label']], 'value' => $item['value']]
+//            );
+//        }
+
+        $menu = $this->filterDecorator->itemsDecorator($itemsArray);
+
+//        $menu = [];
+//        $menu[] = $this->filterDecorator->firstItemDecorator(['label' => ['suffix' => $count], 'value' => null]);
+//
+//        foreach ($itemsArray as $item) {
+//            $menu[] = $this->filterDecorator->itemDecorator(['label' => ['prefix' => $item['prefix'], 'text' => $item['label']], 'value' => $item['value']]);
+//        }
+//
         return $menu;
     }
 }

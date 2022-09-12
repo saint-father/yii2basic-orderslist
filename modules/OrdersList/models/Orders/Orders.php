@@ -54,14 +54,14 @@ class Orders extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'link' => Yii::t('app', 'Link'),
-            'quantity' => Yii::t('app', 'Quantity'),
-            'service_id' => Yii::t('app', 'Service ID'),
-            'status' => Yii::t('app', 'Status'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'mode' => Yii::t('app', 'Mode'),
+            'id' => Yii::t('common', 'orders.id'),
+            'user_id' => Yii::t('common', 'orders.user_id'),
+            'link' => Yii::t('common', 'orders.link'),
+            'quantity' => Yii::t('common', 'orders.quantity'),
+            'service_id' => Yii::t('common', 'orders.service_id'),
+            'status' => Yii::t('common', 'orders.status'),
+            'created_at' => Yii::t('common', 'orders.created_at'),
+            'mode' => Yii::t('common', 'orders.mode'),
         ];
     }
 

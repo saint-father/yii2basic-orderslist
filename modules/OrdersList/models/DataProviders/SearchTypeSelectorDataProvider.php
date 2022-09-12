@@ -2,26 +2,16 @@
 
 namespace app\modules\OrdersList\models\DataProviders;
 
-use app\modules\OrdersList\helpers\ModeFilterDecorator;
-use app\modules\OrdersList\helpers\SearchTypeSelectorDecorator;
-use app\modules\OrdersList\helpers\StatusFilterDecorator;
-use app\modules\OrdersList\models\DataProviders\AbstractFilterDataProvider;
-use Yii;
+use app\modules\OrdersList\interfaces\FilterDataProviderInterface;
 
-class SearchTypeSelectorDataProvider extends AbstractSelectorDataProvider
+class SearchTypeSelectorDataProvider extends AbstractFilterDataProvider implements FilterDataProviderInterface
 {
-    public function __construct(
-        SearchTypeSelectorDecorator $searchTypeSelectorDecorator
-    ) {
-        $this->filterDecorator = $searchTypeSelectorDecorator;
-    }
-
     public function getEntities() : array
     {
         return [
-            ['label' => 'Order ID', 'value' => 0],
-            ['label' => 'Link',     'value' => 1],
-            ['label' => 'Username', 'value' => 2],
-        ];
+                0 => 'orders.search_order_id',
+                1 => 'orders.search_link',
+                2 => 'orders.search_username',
+            ];
     }
 }

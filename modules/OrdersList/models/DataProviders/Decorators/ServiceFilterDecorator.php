@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\OrdersList\helpers;
+namespace app\modules\OrdersList\models\DataProviders\Decorators;
 
 use yii\bootstrap5\Html;
 
@@ -8,9 +8,11 @@ class ServiceFilterDecorator extends AbstractFilterDecorator
 {
     const URL_PARAM = 'service';
 
-    public function __construct()
+    public function setFilterParam() : self
     {
         $this->urlParam = self::URL_PARAM;
+
+        return $this;
     }
 
     public function firstItemDecorator(array $item) : array
@@ -24,7 +26,7 @@ class ServiceFilterDecorator extends AbstractFilterDecorator
     public function itemDecorator(array $item) : array
     {
         $filterItem = parent::itemDecorator($item);
-        $filterItem['label'] = Html::tag('span', Html::encode($item['label']['prefix']), ['class' => 'label-id']) . $filterItem['label'];
+        $filterItem['label'] = Html::tag('span', Html::encode($item['prefix']), ['class' => 'label-id']) . $filterItem['label'];
 
         return $filterItem;
     }

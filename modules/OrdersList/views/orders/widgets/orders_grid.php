@@ -16,7 +16,7 @@ use yii\widgets\Menu;
 /** @var array $modeHeaderFilterItems */
 /** @var array $statusesItems */
 
-$this->title = Yii::t('app', 'Orders');
+$this->title = Yii::t('common', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -24,14 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'layout' => "{items}\n{summary}\n{pager}",
-    'summary' => "{begin} to {end} of {totalCount}",
+    'summary' => Yii::t('common', "{begin} to {end} of {totalCount}"),
     'tableOptions' => [
             'class' => 'table order-table'
         ],
         'columns' => [
             'id',
             [
-                'attribute' => 'user',
+                'attribute' => 'orders.user',
                 'label' => 'User',
                 'value' => function ($model) {
                     return $model->user->first_name . ' ' . $model->user->last_name;
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'service_id',
                 'header' => $this->render('header_filter_dropdown', [
-                    'headerTitle' => 'Service',
+                    'headerTitle' => Yii::t('common', 'orders.service'),
                     'headerButtonId' => 'serviceDropdownFilterBtn',
                     'headerFilterItems' => $serviceHeaderFilterItems,
                 ]),
@@ -51,16 +51,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'status',
-                'label' => 'Status',
                 'value' => function ($model) use ($statusesItems){
                     return ArrayHelper::getValue(ArrayHelper::map($statusesItems,'value','label'), $model->status, 'not set');
                 },
             ],
             [
                 'attribute' => 'mode',
-                'label' => 'Mode',
                 'header' => $this->render('header_filter_dropdown', [
-                    'headerTitle' => 'Mode',
+                    'headerTitle' => Yii::t('common', 'orders.mode'),
                     'headerButtonId' => 'modeDropdownFilterBtn',
                     'headerFilterItems' => $modeHeaderFilterItems,
                 ]),

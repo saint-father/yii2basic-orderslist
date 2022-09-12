@@ -2,7 +2,7 @@
 
 namespace app\modules\OrdersList\helpers;
 
-use app\modules\OrdersList\interfaces\FilterDecoratorInterface;
+use app\modules\OrdersList\models\DataProviders\Decorators\FilterDecoratorInterface;
 use Yii;
 use yii\helpers\Url;
 

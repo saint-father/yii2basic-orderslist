@@ -74,34 +74,6 @@ class OrdersSearch extends Orders
         return $query;
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     * @return ActiveDataProvider
-     */
-    public function getData($requestParams)
-    {
-        $query = $this->search($requestParams);
-        $countQuery = clone $query;
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'totalCount' => (int)$countQuery->count(),
-            'pagination' => [
-                'pageSize' => 10,
-                'forcePageParam' => false,
-                'pageSizeParam' => false,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-        ]);
-
-        return $dataProvider;
-    }
-
     public function getStatuses($requestParams)
     {
         $query = $this->search($requestParams);
