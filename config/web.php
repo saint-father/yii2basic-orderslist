@@ -12,7 +12,7 @@ $config = [
         'log',
         'app\modules\OrdersList\Bootstrap',
     ],
-    'layout' => '@app/modules/OrdersList/views/layouts/orders_list',
+    'layout' => '@app/modules/ordersList/views/layouts/orders_list',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',

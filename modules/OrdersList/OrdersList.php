@@ -10,7 +10,7 @@ class OrdersList extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\OrdersList\controllers';
+    public $controllerNamespace = 'app\modules\ordersList\controllers';
 
     /**
      * {@inheritdoc}

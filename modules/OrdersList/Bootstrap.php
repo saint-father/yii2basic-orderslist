@@ -16,7 +16,7 @@ class Bootstrap implements BootstrapInterface
         $app->getUrlManager()->addRules(
             [
                 [
-                    'class' => 'app\modules\OrdersList\components\OrdersListUrlRule',
+                    'class' => 'app\modules\ordersList\components\OrdersListUrlRule',
                 ],
                 '<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
             ]
