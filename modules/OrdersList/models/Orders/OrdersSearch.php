@@ -15,13 +15,13 @@ class OrdersSearch extends Orders
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
-        return [
-            [['id', 'user_id', 'quantity', 'service_id', 'status', 'created_at', 'mode'], 'integer'],
-            [['link', 'user'], 'safe'],
-        ];
-    }
+//    public function rules()
+//    {
+//        return [
+//            [['id', 'user_id', 'quantity', 'service_id', 'status', 'created_at', 'mode'], 'integer'],
+//            [['link', 'user', 'service_id', 'status'], 'safe'],
+//        ];
+//    }
 
     /**
      * {@inheritdoc}
@@ -38,46 +38,35 @@ class OrdersSearch extends Orders
      */
     public function search($params)
     {
-        $query = Orders::find();
+        $query = Orders::find()
+            ->joinWith(['user u','service s'])
+            ->where(array_intersect_key($params, array_flip(['status', 'mode', 'service_id'])));
 
-        $this->load($params);
-
-        if (!$this->validate()) {
-            $query->where('0=1');
-            return $query;
+        if   (isset($params['search']) && isset($params['searchType']) && ($params['search'] != '')) {
+            $search = $params['search'];
+            $searchType = $params['searchType'];
+            switch ($searchType) {
+                case Orders::SEARCH_ORDER_ID:
+                    $query->andWhere(['orders.id' => $search]);
+                    break;
+                case Orders::SEARCH_LINK:
+                    $query->andWhere(['like', 'link', $search]);
+                    break;
+                case Orders::SEARCH_USERNAME:
+                    if (strpos($search, ' ')) {
+                        $userName = explode(' ', $search);
+                        $query
+                            ->andWhere(['or like', 'u.first_name', [$userName[0], $userName[1]]])
+                            ->andWhere(['or like', 'u.last_name', [$userName[0], $userName[1]]]);
+                        break;
+                    }
+                    $query
+                        ->andWhere(['like', 'u.first_name', $search])
+                        ->orWhere(['like', 'u.last_name', $search]);
+                    break;
+            }
         }
 
-        $query->joinWith(['user','service']);
-
-//        $dataProvider->sort->attributes['user'] = [
-//            'asc' => ['users.first_name' => SORT_ASC],
-//            'desc' => ['users.first_name' => SORT_DESC],
-//        ];
-//
-//        if (empty($dataProvider->sort->getAttributeOrders())) {
-//            $dataProvider->sort->attributes = ['id' => SORT_DESC];
-//        }
-
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'quantity' => $this->quantity,
-            'service_id' => $this->service_id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'mode' => $this->mode,
-        ]);
-
-        $query->andFilterWhere(['like', 'link', $this->link]);
-
         return $query;
-    }
-
-    public function getStatuses($requestParams)
-    {
-        $query = $this->search($requestParams);
-
-        return $query->select(['status'])->distinct()->asArray()->all();
     }
 }

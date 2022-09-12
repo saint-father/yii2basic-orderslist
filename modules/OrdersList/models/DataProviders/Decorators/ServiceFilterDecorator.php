@@ -6,7 +6,7 @@ use yii\bootstrap5\Html;
 
 class ServiceFilterDecorator extends AbstractFilterDecorator
 {
-    const URL_PARAM = 'service';
+    const URL_PARAM = 'service_id';
 
     public function setFilterParam() : self
     {

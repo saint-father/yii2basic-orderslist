@@ -2,7 +2,7 @@
 
 namespace app\modules\OrdersList\components;
 
-use yii\helpers\StringHelper;
+use Yii;
 use yii\web\UrlRuleInterface;
 use yii\base\BaseObject;
 
@@ -12,19 +12,16 @@ class OrdersListUrlRule extends BaseObject implements UrlRuleInterface
 
     public function createUrl($manager, $route, $params)
     {
-//        if (strpos($route, self::MODULE_URL) !== false) {
-//            $route = rtrim($route, '/index');
-//
-////            if (isset($params['page'])) {
-////                $route .= '/page-' . $params['page'];
-////            }
-////
-////            if (isset($params['status'])) {
-////                $route .= '/status-' . $params['status'];
-////            }
-//
-//            return $route;
-//        }
+        if (strpos($route, self::MODULE_URL) !== false) {
+            $route = rtrim($route, '/index');
+
+            if (isset($params['status']) && $params['status'] != Yii::$app->request->get('status')) {
+                unset($params['mode']);
+                unset($params['service_id']);
+
+                return $route . '?' . http_build_query($params);
+            }
+        }
 
         return false;
     }

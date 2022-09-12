@@ -22,32 +22,19 @@ class ServiceFilterDataProvider extends AbstractFilterDataProvider
     {
         $itemsArray = $this->getEntities();
 
-        if(empty($this->filterDecorator)) {
+        if (empty($this->filterDecorator)) {
             return $itemsArray;
         }
 
         $count = $this->getQuery()->sum('prefix');
+
         array_map(fn($item): array => [
             'label' => ['prefix' => $item['prefix'], 'text' => $item['label']],
             'value' => $item['value']
         ], $itemsArray);
+
         array_unshift($itemsArray, ['label' => ['suffix' => $count], 'value' => null]);
 
-//        foreach ($itemsArray as $item) {
-//            $menu[] = $this->filterDecorator->itemDecorator(
-//                ['label' => ['prefix' => $item['prefix'], 'text' => $item['label']], 'value' => $item['value']]
-//            );
-//        }
-
-        $menu = $this->filterDecorator->itemsDecorator($itemsArray);
-
-//        $menu = [];
-//        $menu[] = $this->filterDecorator->firstItemDecorator(['label' => ['suffix' => $count], 'value' => null]);
-//
-//        foreach ($itemsArray as $item) {
-//            $menu[] = $this->filterDecorator->itemDecorator(['label' => ['prefix' => $item['prefix'], 'text' => $item['label']], 'value' => $item['value']]);
-//        }
-//
-        return $menu;
+        return $this->filterDecorator->itemsDecorator($itemsArray);
     }
 }

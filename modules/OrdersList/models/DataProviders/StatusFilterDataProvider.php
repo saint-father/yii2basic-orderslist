@@ -16,11 +16,12 @@ class StatusFilterDataProvider extends AbstractFilterDataProvider
     public function getEntities() : array
     {
         return [
-            ['label' => 'orders.pending_status',      'value' => 0],
-            ['label' => 'orders.in_progress_status',  'value' => 1],
-            ['label' => 'orders.completed_status',    'value' => 2],
-            ['label' => 'orders.canceled_status',     'value' => 3],
-            ['label' => 'orders.fail_status',         'value' => 4],
+            ['label' => '',                           'value' => null   ],
+            ['label' => 'orders.pending_status',      'value' => 0      ],
+            ['label' => 'orders.in_progress_status',  'value' => 1      ],
+            ['label' => 'orders.completed_status',    'value' => 2      ],
+            ['label' => 'orders.canceled_status',     'value' => 3      ],
+            ['label' => 'orders.fail_status',         'value' => 4      ],
         ];
     }
 }

@@ -10,6 +10,7 @@ class ModeFilterDataProvider extends AbstractFilterDataProvider
     public function getEntities() : array
     {
         return [
+            ['label' => '',   'value' => null],
             ['label' => 'orders.manual_mode',   'value' => 0],
             ['label' => 'orders.auto_mode',     'value' => 1],
         ];

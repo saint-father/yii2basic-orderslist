@@ -8,6 +8,7 @@ use app\modules\OrdersList\models\Services\ServicesQuery;
 use app\modules\OrdersList\models\Users\Users;
 use app\modules\OrdersList\models\Users\UsersQuery;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "orders".
@@ -24,8 +25,21 @@ use Yii;
  * @property Services $service
  * @property \app\modules\OrdersList\models\Users\Users $user
  */
-class Orders extends \yii\db\ActiveRecord
+class Orders extends ActiveRecord
 {
+    public const PENDING_STATUS = 0;
+    public const IN_PROGRESS_STATUS = 1;
+    public const COMPLETED_STATUS = 2;
+    public const CANCELED_STATUS = 3;
+    public const FAIL_STATUS = 4;
+
+    public const MANUAL_MODE = 0;
+    public const AUTO_MODE = 1;
+
+    public const SEARCH_ORDER_ID = 0;
+    public const SEARCH_LINK = 1;
+    public const SEARCH_USERNAME = 2;
+
     /**
      * {@inheritdoc}
      */
