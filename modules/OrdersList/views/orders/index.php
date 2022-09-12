@@ -1,7 +1,7 @@
 <?php
 
-use app\modules\OrdersList\models\Orders\Orders;
-use app\modules\OrdersList\models\Orders\OrdersSearch;
+use app\modules\ordersList\models\Orders\Orders;
+use app\modules\ordersList\models\Orders\OrdersSearch;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;

@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\OrdersList\models\DataProviders;
+namespace app\modules\ordersList\models\DataProviders;
 
-use app\modules\OrdersList\models\DataProviders\Decorators\ServiceFilterDecorator;
-use app\modules\OrdersList\interfaces\FilterDataProviderInterface;
-use app\modules\OrdersList\models\Services\Services;
+use app\modules\ordersList\models\DataProviders\Decorators\ServiceFilterDecorator;
+use app\modules\ordersList\interfaces\FilterDataProviderInterface;
+use app\modules\ordersList\models\Services\Services;
 
 class ServiceFilterDataProvider extends AbstractFilterDataProvider
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\OrdersList\interfaces;
+namespace app\modules\ordersList\interfaces;
 
-use app\modules\OrdersList\models\DataProviders\Decorators\FilterDecoratorInterface;
+use app\modules\ordersList\models\DataProviders\Decorators\FilterDecoratorInterface;
 
 interface FilterDataProviderInterface
 {

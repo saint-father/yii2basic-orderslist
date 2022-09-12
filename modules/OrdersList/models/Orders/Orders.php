@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\OrdersList\models\Orders;
+namespace app\modules\ordersList\models\Orders;
 
-use app\modules\OrdersList\models\Orders\OrdersQuery;
-use app\modules\OrdersList\models\Services\Services;
-use app\modules\OrdersList\models\Services\ServicesQuery;
-use app\modules\OrdersList\models\Users\Users;
-use app\modules\OrdersList\models\Users\UsersQuery;
+use app\modules\ordersList\models\Orders\OrdersQuery;
+use app\modules\ordersList\models\Services\Services;
+use app\modules\ordersList\models\Services\ServicesQuery;
+use app\modules\ordersList\models\Users\Users;
+use app\modules\ordersList\models\Users\UsersQuery;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -23,7 +23,7 @@ use yii\db\ActiveRecord;
  * @property int $mode 0 - Manual, 1 - Auto
  *
  * @property Services $service
- * @property \app\modules\OrdersList\models\Users\Users $user
+ * @property \app\modules\ordersList\models\Users\Users $user
  */
 class Orders extends ActiveRecord
 {
@@ -92,7 +92,7 @@ class Orders extends ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery|\app\modules\OrdersList\models\Users\UsersQuery
+     * @return \yii\db\ActiveQuery|\app\modules\ordersList\models\Users\UsersQuery
      */
     public function getUser()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\OrdersList\components;
+namespace app\modules\ordersList\components;
 
 use Yii;
 use yii\web\UrlRuleInterface;

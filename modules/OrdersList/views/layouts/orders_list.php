@@ -3,8 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\modules\OrdersList\assets\OrdersListIE9Asset;
-use app\modules\OrdersList\assets\OrdersListAsset;
+use app\modules\ordersList\assets\OrdersListIE9Asset;
+use app\modules\ordersList\assets\OrdersListAsset;
 use yii\bootstrap5\Html;
 
 OrdersListIE9Asset::register($this);

@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\OrdersList\models\Orders;
+namespace app\modules\ordersList\models\Orders;
 
-use app\modules\OrdersList\models\Orders\OrdersQuery;
+use app\modules\ordersList\models\Orders\OrdersQuery;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\OrdersList\models\Orders\Orders;
+use app\modules\ordersList\models\Orders\Orders;
 
 /**
  * OrdersSearch represents the model behind the search form of `app\modules\OrdersList\models\Orders\Orders`.

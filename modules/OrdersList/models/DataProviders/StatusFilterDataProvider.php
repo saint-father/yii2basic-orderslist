@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\OrdersList\models\DataProviders;
+namespace app\modules\ordersList\models\DataProviders;
 
-use app\modules\OrdersList\models\DataProviders\Decorators\AbstractFilterDecorator;
-use app\modules\OrdersList\models\DataProviders\Decorators\StatusFilterDecorator;
-use app\modules\OrdersList\models\DataProviders\AbstractFilterDataProvider;
+use app\modules\ordersList\models\DataProviders\Decorators\AbstractFilterDecorator;
+use app\modules\ordersList\models\DataProviders\Decorators\StatusFilterDecorator;
+use app\modules\ordersList\models\DataProviders\AbstractFilterDataProvider;
 
 class StatusFilterDataProvider extends AbstractFilterDataProvider
 {

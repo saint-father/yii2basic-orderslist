@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\OrdersList;
+namespace app\modules\ordersList;
 
 use Yii;
 use yii\base\BootstrapInterface;
@@ -13,8 +13,6 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-//        Yii::setAlias('DataProviders', 'app\modules\OrdersList\models\DataProviders');
-
         $app->getUrlManager()->addRules(
             [
                 [

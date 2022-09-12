@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\OrdersList\models\Services;
+namespace app\modules\ordersList\models\Services;
 
-use app\modules\OrdersList\models\Orders\Orders;
-use app\modules\OrdersList\models\Orders\OrdersQuery;
-use app\modules\OrdersList\models\Services\ServicesQuery;
+use app\modules\ordersList\models\Orders\Orders;
+use app\modules\ordersList\models\Orders\OrdersQuery;
+use app\modules\ordersList\models\Services\ServicesQuery;
 use Yii;
 
 /**
@@ -50,7 +50,7 @@ class Services extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Orders]].
      *
-     * @return \yii\db\ActiveQuery|\app\modules\OrdersList\models\Orders\OrdersQuery
+     * @return \yii\db\ActiveQuery|\app\modules\ordersList\models\Orders\OrdersQuery
      */
     public function getOrders()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\OrdersList\helpers;
+namespace app\modules\ordersList\helpers;
 
-use app\modules\OrdersList\models\DataProviders\Decorators\FilterDecoratorInterface;
+use app\modules\ordersList\models\DataProviders\Decorators\FilterDecoratorInterface;
 use Yii;
 use yii\helpers\Url;
 

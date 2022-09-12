@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\OrdersList\models\DataProviders;
+namespace app\modules\ordersList\models\DataProviders;
 
-use app\modules\OrdersList\models\DataProviders\Decorators\AbstractFilterDecorator;
-use app\modules\OrdersList\interfaces\FilterDataProviderInterface;
-use app\modules\OrdersList\models\DataProviders\Decorators\FilterDecoratorInterface;
+use app\modules\ordersList\models\DataProviders\Decorators\AbstractFilterDecorator;
+use app\modules\ordersList\interfaces\FilterDataProviderInterface;
+use app\modules\ordersList\models\DataProviders\Decorators\FilterDecoratorInterface;
 use yii\helpers\ArrayHelper;
-use app\modules\OrdersList\models\DataProviders\ServiceFilterDataProvider;
+use app\modules\ordersList\models\DataProviders\ServiceFilterDataProvider;
 
 abstract class AbstractFilterDataProvider implements FilterDataProviderInterface
 {

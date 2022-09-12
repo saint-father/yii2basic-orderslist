@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\OrdersList;
+namespace app\modules\ordersList;
 
 /**
  * orderslist module definition class

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\OrdersList\models\Services;
+namespace app\modules\ordersList\models\Services;
 
-use app\modules\OrdersList\models\Services\Services;
+use app\modules\ordersList\models\Services\Services;
 
 /**
  * This is the ActiveQuery class for [[Services]].

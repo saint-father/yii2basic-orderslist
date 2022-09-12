@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\OrdersList\controllers;
+namespace app\modules\ordersList\controllers;
 
 use app\modules\orders\models\searches\ServicesSearch;
-use app\modules\OrdersList\models\OrdersFacade;
+use app\modules\ordersList\models\OrdersFacade;
 use Yii;
 use yii\web\Controller;
 

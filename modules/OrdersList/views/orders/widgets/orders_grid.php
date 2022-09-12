@@ -1,7 +1,7 @@
 <?php
 
-use app\modules\OrdersList\models\DataProviders\ServiceFilterDataProvider;
-use app\modules\OrdersList\models\Orders\Orders;
+use app\modules\ordersList\models\DataProviders\ServiceFilterDataProvider;
+use app\modules\ordersList\models\Orders\Orders;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -10,7 +10,7 @@ use yii\grid\GridView;
 use yii\widgets\Menu;
 
 /** @var yii\web\View $this */
-/** @var \app\modules\OrdersList\models\Orders\OrdersSearch $searchModel */
+/** @var \app\modules\ordersList\models\Orders\OrdersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var array $serviceHeaderFilterItems */
 /** @var array $modeHeaderFilterItems */

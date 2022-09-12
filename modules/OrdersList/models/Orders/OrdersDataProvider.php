@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\OrdersList\models\Orders;
+namespace app\modules\ordersList\models\Orders;
 
 use yii\data\ActiveDataProvider;
 

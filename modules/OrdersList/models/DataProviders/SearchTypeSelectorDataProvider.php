@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\OrdersList\models\DataProviders;
+namespace app\modules\ordersList\models\DataProviders;
 
-use app\modules\OrdersList\interfaces\FilterDataProviderInterface;
+use app\modules\ordersList\interfaces\FilterDataProviderInterface;
 
 class SearchTypeSelectorDataProvider extends AbstractFilterDataProvider implements FilterDataProviderInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\OrdersList\models\DataProviders\Decorators;
+namespace app\modules\ordersList\models\DataProviders\Decorators;
 
 interface FilterDecoratorInterface
 {

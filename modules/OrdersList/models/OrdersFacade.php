@@ -1,15 +1,15 @@
 <?php
 
-namespace app\modules\OrdersList\models;
+namespace app\modules\ordersList\models;
 
-use app\modules\OrdersList\models\DataProviders\AbstractFilterDataProvider;
-use app\modules\OrdersList\models\DataProviders\Decorators\AbstractFilterDecorator;
-use app\modules\OrdersList\models\DataProviders\ModeFilterDataProvider;
-use app\modules\OrdersList\models\DataProviders\SearchTypeSelectorDataProvider;
-use app\modules\OrdersList\models\DataProviders\ServiceFilterDataProvider;
-use app\modules\OrdersList\models\DataProviders\StatusFilterDataProvider;
-use app\modules\OrdersList\models\Orders\OrdersDataProvider;
-use app\modules\OrdersList\models\Orders\OrdersSearch;
+use app\modules\ordersList\models\DataProviders\AbstractFilterDataProvider;
+use app\modules\ordersList\models\DataProviders\Decorators\AbstractFilterDecorator;
+use app\modules\ordersList\models\DataProviders\ModeFilterDataProvider;
+use app\modules\ordersList\models\DataProviders\SearchTypeSelectorDataProvider;
+use app\modules\ordersList\models\DataProviders\ServiceFilterDataProvider;
+use app\modules\ordersList\models\DataProviders\StatusFilterDataProvider;
+use app\modules\ordersList\models\Orders\OrdersDataProvider;
+use app\modules\ordersList\models\Orders\OrdersSearch;
 
 class OrdersFacade
 {
