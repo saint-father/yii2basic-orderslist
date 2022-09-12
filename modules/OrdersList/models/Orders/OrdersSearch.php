@@ -42,7 +42,7 @@ class OrdersSearch extends Orders
             ->joinWith(['user u','service s'])
             ->where(array_intersect_key($params, array_flip(['status', 'mode', 'service_id'])));
 
-        if   (isset($params['search']) && isset($params['searchType']) && ($params['search'] != '')) {
+        if (isset($params['search']) && isset($params['searchType']) && ($params['search'] != '')) {
             $search = $params['search'];
             $searchType = $params['searchType'];
             switch ($searchType) {
