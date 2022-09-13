@@ -3,6 +3,7 @@
 namespace app\modules\ordersList\models\orders;
 
 use yii\data\ActiveDataProvider;
+use yii\db\Query;
 
 class OrdersDataProvider
 {
@@ -10,6 +11,15 @@ class OrdersDataProvider
      * Default page size
      */
     const PAGE_SIZE = 100;
+
+    /**
+     * @var array
+     */
+    private static array $requestParams;
+    /**
+     * @var OrdersSearch
+     */
+    private OrdersSearch $ordersSearch;
 
     /**
      * OrdersDataProvider constructor
@@ -28,8 +38,10 @@ class OrdersDataProvider
      * @param $requestParams
      * @return static
      */
-    public static function init($requestParams) : self
+    public static function init(array $requestParams) : self
     {
+        self::$requestParams = $requestParams;
+
         return new self(new OrdersSearch());
     }
 
@@ -39,9 +51,9 @@ class OrdersDataProvider
      * @param array $params
      * @return ActiveDataProvider
      */
-    public function getData($requestParams)
+    public function getData() : ActiveDataProvider
     {
-        $query = $this->ordersSearch->search($requestParams);
+        $query = $this->getQery();
         $countQuery = clone $query;
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,4 +73,14 @@ class OrdersDataProvider
         return $dataProvider;
     }
 
+    /**
+     * Returns query with requested params
+     *
+     * @param array $requestParams
+     * @return Query
+     */
+    public function getQery() : Query
+    {
+        return $this->ordersSearch->search(self::$requestParams);
+    }
 }

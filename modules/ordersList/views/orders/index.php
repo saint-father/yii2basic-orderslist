@@ -60,4 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'modeHeaderFilterItems' => $modeHeaderFilterItems,
         'statusesItems' => $statuses,
     ]) ?>
+    <div class="export-csv-link">
+        <span>
+            <?= Html::a(Yii::t('common', 'Save result'), Url::to(array_merge(['/orderslist/orders/export'], $requestParams))) ?>
+        </span>
+    </div>
 </div>

@@ -3,7 +3,6 @@
 namespace app\modules\ordersList\models;
 
 use app\modules\ordersList\models\dataProviders\AbstractFilterDataProvider;
-use app\modules\ordersList\models\dataProviders\decorators\AbstractFilterDecorator;
 use app\modules\ordersList\models\dataProviders\decorators\ModeFilterDecorator;
 use app\modules\ordersList\models\dataProviders\decorators\SearchTypeFilterDecorator;
 use app\modules\ordersList\models\dataProviders\decorators\ServiceFilterDecorator;
@@ -15,7 +14,7 @@ use app\modules\ordersList\models\dataProviders\ServiceFilterDataProvider;
 use app\modules\ordersList\models\dataProviders\StatusFilterDataProvider;
 use app\modules\ordersList\models\orders\OrdersDataProvider;
 
-class OrdersFacade
+class OrdersListPage
 {
     /**
      * @var array
@@ -72,11 +71,11 @@ class OrdersFacade
      */
     public function getViewConfig() : array
     {
-        $searchModel = OrdersDataProvider::init(self::$requestParams);
+        $ordersList = OrdersDataProvider::init(self::$requestParams);
 
         return [
-            'searchModel' => $searchModel,
-            'dataProvider' => $searchModel->getData(self::$requestParams),
+            'searchModel' => $ordersList,
+            'dataProvider' => $ordersList->getData(),
             'serviceHeaderFilterItems' => self::$serviceFilterDataProvider->getItems(),
             'modeHeaderFilterItems' => self::$modeFilterDataProvider->getItems(),
             'statuses' => self::$statusFilterDataProvider->getItems(),

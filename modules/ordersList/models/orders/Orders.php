@@ -5,7 +5,9 @@ namespace app\modules\ordersList\models\orders;
 use app\modules\ordersList\models\services\Services;
 use app\modules\ordersList\models\services\ServicesQuery;
 use app\modules\ordersList\models\users\Users;
+use app\modules\ordersList\models\users\UsersQuery;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -67,7 +69,7 @@ class Orders extends ActiveRecord
     /**
      * Gets query for [[Service]].
      *
-     * @return \yii\db\ActiveQuery|ServicesQuery
+     * @return ActiveQuery|ServicesQuery
      */
     public function getService()
     {
@@ -77,7 +79,7 @@ class Orders extends ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery|\app\modules\ordersList\models\users\UsersQuery
+     * @return ActiveQuery|UsersQuery
      */
     public function getUser()
     {
