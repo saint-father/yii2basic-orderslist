@@ -7,7 +7,6 @@ use yii\base\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface
 {
-
     /**
      * @inheritDoc
      */

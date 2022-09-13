@@ -2,10 +2,14 @@
 
 namespace app\modules\ordersList;
 
+use Yii;
+use yii\base\Module;
+use yii\i18n\PhpMessageSource;
+
 /**
  * orderslist module definition class
  */
-class ordersList extends \yii\base\Module
+class ordersList extends Module
 {
     /**
      * {@inheritdoc}
@@ -18,5 +22,11 @@ class ordersList extends \yii\base\Module
     public function init()
     {
         parent::init();
+
+        Yii::$app->i18n->translations['common*'] = [
+            'class' => PhpMessageSource::class,
+            'sourceLanguage' => 'ru',
+            'basePath' => __DIR__ . '/messages',
+        ];
     }
 }

@@ -34,21 +34,6 @@ class OrdersListUrlRule extends BaseObject implements UrlRuleInterface
                 array_map(fn($param) : string => Yii::$app->request->get($param, ''), $checkedParams)
             );
 
-            // Search form URL
-            if (
-                isset($params['search'])
-                && isset($params['searchType'])
-                && (
-                    $params['search'] != $checkedParams['search']
-                    || $params['searchType'] != $checkedParams['searchType']
-                )
-            ) {
-                unset($params['mode']);
-                unset($params['service_id']);
-
-                return $route . '?' . http_build_query($params);
-            }
-
             // Status filter URL
             if (isset($params['status']) && $params['status'] != $checkedParams['status']) {
                 unset($params['mode']);

@@ -6,6 +6,7 @@ use app\modules\ordersList\models\orders\Orders;
 use app\modules\ordersList\models\orders\OrdersQuery;
 use app\modules\ordersList\models\users\UsersQuery;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "users".
@@ -16,7 +17,7 @@ use Yii;
  *
  * @property Orders[] $orders
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends ActiveRecord
 {
     /**
      * {@inheritdoc}

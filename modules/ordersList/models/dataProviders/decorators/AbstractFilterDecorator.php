@@ -9,10 +9,14 @@ use yii\helpers\Url;
 abstract class AbstractFilterDecorator implements FilterDecoratorInterface
 {
     /**
+     * URL parameter for link helper
+     *
      * @var string
      */
     protected string $urlParam = '';
     /**
+     * Attribute value for selected item
+     *
      * @var string
      */
     protected string $activeText = 'true';
@@ -25,7 +29,6 @@ abstract class AbstractFilterDecorator implements FilterDecoratorInterface
      */
     public static function init(string $decoratorName) : FilterDecoratorInterface
     {
-        $decoratorName = __NAMESPACE__ . '\\' . $decoratorName;
         /** @var FilterDecoratorInterface $decorator */
         $decorator = new $decoratorName();
 
@@ -90,6 +93,10 @@ abstract class AbstractFilterDecorator implements FilterDecoratorInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @param array $itemsArray
+     * @return array
+     * @throws \Exception
      */
     public function itemsDecorator(array $itemsArray) : array
     {

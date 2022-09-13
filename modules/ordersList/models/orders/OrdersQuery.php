@@ -9,4 +9,5 @@ namespace app\modules\ordersList\models\orders;
  */
 class OrdersQuery extends \yii\db\ActiveQuery
 {
+
 }

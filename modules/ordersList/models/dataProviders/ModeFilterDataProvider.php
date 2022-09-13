@@ -4,6 +4,11 @@ namespace app\modules\ordersList\models\dataProviders;
 
 class ModeFilterDataProvider extends AbstractFilterDataProvider
 {
+    /**
+     * {@inheritdoc}
+     *
+     * @return array[]
+     */
     public function getDataItems() : array
     {
         return [

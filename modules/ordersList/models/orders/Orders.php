@@ -25,19 +25,6 @@ use yii\db\ActiveRecord;
  */
 class Orders extends ActiveRecord
 {
-    public const PENDING_STATUS = 0;
-    public const IN_PROGRESS_STATUS = 1;
-    public const COMPLETED_STATUS = 2;
-    public const CANCELED_STATUS = 3;
-    public const FAIL_STATUS = 4;
-
-    public const MANUAL_MODE = 0;
-    public const AUTO_MODE = 1;
-
-    public const SEARCH_ORDER_ID = 0;
-    public const SEARCH_LINK = 1;
-    public const SEARCH_USERNAME = 2;
-
     /**
      * {@inheritdoc}
      */

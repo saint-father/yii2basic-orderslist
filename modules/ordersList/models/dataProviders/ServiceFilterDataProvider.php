@@ -3,19 +3,35 @@
 namespace app\modules\ordersList\models\dataProviders;
 
 use app\modules\ordersList\models\services\Services;
+use app\modules\ordersList\models\services\ServicesQuery;
 
 class ServiceFilterDataProvider extends AbstractFilterDataProvider
 {
+    /**
+     * Get services entity query
+     *
+     * @return ServicesQuery
+     */
     private function getQuery()
     {
         return Services::find()->getServicesSelectItems();
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return array[]
+     */
     public function getDataItems() : array
     {
         return $this->getQuery()->asArray()->all();
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return array[]
+     */
     public function getItems(): array
     {
         $itemsArray = $this->getDataItems();

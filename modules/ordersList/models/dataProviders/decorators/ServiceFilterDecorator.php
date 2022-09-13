@@ -6,8 +6,16 @@ use yii\bootstrap5\Html;
 
 class ServiceFilterDecorator extends AbstractFilterDecorator
 {
+    /**
+     * Filter specific URL param name
+     */
     const URL_PARAM = 'service_id';
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return $this
+     */
     public function setFilterParam() : self
     {
         $this->urlParam = self::URL_PARAM;
@@ -15,6 +23,13 @@ class ServiceFilterDecorator extends AbstractFilterDecorator
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array $item
+     * @return array
+     * @throws \Exception
+     */
     public function firstItemDecorator(array $item) : array
     {
         $filterItem = parent::firstItemDecorator($item);
@@ -23,6 +38,13 @@ class ServiceFilterDecorator extends AbstractFilterDecorator
         return $filterItem;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array $item
+     * @return array
+     * @throws \Exception
+     */
     public function itemDecorator(array $item) : array
     {
         $filterItem = parent::itemDecorator($item);

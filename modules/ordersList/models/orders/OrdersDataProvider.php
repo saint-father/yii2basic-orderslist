@@ -6,14 +6,28 @@ use yii\data\ActiveDataProvider;
 
 class OrdersDataProvider
 {
+    /**
+     * Default page size
+     */
     const PAGE_SIZE = 100;
 
+    /**
+     * OrdersDataProvider constructor
+     *
+     * @param OrdersSearch $ordersSearch
+     */
     public function __construct(
         OrdersSearch $ordersSearch
     ) {
         $this->ordersSearch = $ordersSearch;
     }
 
+    /**
+     * Initialization
+     *
+     * @param $requestParams
+     * @return static
+     */
     public static function init($requestParams) : self
     {
         return new self(new OrdersSearch());

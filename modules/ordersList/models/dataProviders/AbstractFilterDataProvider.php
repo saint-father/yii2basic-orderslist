@@ -2,18 +2,29 @@
 
 namespace app\modules\ordersList\models\dataProviders;
 
-use app\modules\ordersList\models\dataProviders\FilterDataProviderInterface;
+use app\modules\ordersList\models\dataProviders\decorators\AbstractFilterDecorator;
 use app\modules\ordersList\models\dataProviders\decorators\FilterDecoratorInterface;
 
 abstract class AbstractFilterDataProvider implements FilterDataProviderInterface
 {
+    /**
+     * Data and structure decorator
+     *
+     * @var FilterDecoratorInterface
+     */
     public FilterDecoratorInterface $filterDecorator;
 
-    public static function init(string $providerName, array $config = [])
+    /**
+     * Initialize data provider
+     *
+     * @param string $providerName
+     * @param array $config
+     * @return FilterDataProviderInterface
+     */
+    public static function init(string $providerName, array $config = []): FilterDataProviderInterface
     {
-        $providerNamespace = __NAMESPACE__ . '\\' . $providerName;
         /** @var FilterDataProviderInterface $dataProvider */
-        $dataProvider = new $providerNamespace();
+        $dataProvider = new $providerName();
 
         if (!empty($config['decorator'])) {
             $dataProvider->setDecorator($config['decorator']);
@@ -22,15 +33,31 @@ abstract class AbstractFilterDataProvider implements FilterDataProviderInterface
         return $dataProvider;
     }
 
-    public function setDecorator(FilterDecoratorInterface $decorator) : FilterDataProviderInterface
+    /**
+     * Set data and structure decorator
+     *
+     * @param string $decorator
+     * @return FilterDataProviderInterface
+     */
+    public function setDecorator(string $decorator) : FilterDataProviderInterface
     {
-        $this->filterDecorator = $decorator;
+        $this->filterDecorator = AbstractFilterDecorator::init($decorator);
 
         return $this;
     }
 
+    /**
+     * Provides array of clear data without decoration
+     *
+     * @return array
+     */
     abstract public function getDataItems() : array;
 
+    /**
+     * Provides array of data with decoration
+     *
+     * @return array
+     */
     public function getItems(): array
     {
         $itemsArray = $this->getDataItems();

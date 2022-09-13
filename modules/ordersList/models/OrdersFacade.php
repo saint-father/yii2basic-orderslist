@@ -4,6 +4,11 @@ namespace app\modules\ordersList\models;
 
 use app\modules\ordersList\models\dataProviders\AbstractFilterDataProvider;
 use app\modules\ordersList\models\dataProviders\decorators\AbstractFilterDecorator;
+use app\modules\ordersList\models\dataProviders\decorators\ModeFilterDecorator;
+use app\modules\ordersList\models\dataProviders\decorators\SearchTypeFilterDecorator;
+use app\modules\ordersList\models\dataProviders\decorators\ServiceFilterDecorator;
+use app\modules\ordersList\models\dataProviders\decorators\StatusFilterDecorator;
+use app\modules\ordersList\models\dataProviders\FilterDataProviderInterface;
 use app\modules\ordersList\models\dataProviders\ModeFilterDataProvider;
 use app\modules\ordersList\models\dataProviders\SearchTypeSelectorDataProvider;
 use app\modules\ordersList\models\dataProviders\ServiceFilterDataProvider;
@@ -16,55 +21,57 @@ class OrdersFacade
      * @var array
      */
     private static array $requestParams;
+    /**
+     * Data providers for several filters
+     *
+     * @var FilterDataProviderInterface
+     */
+    private static FilterDataProviderInterface $serviceFilterDataProvider;
+    private static FilterDataProviderInterface $modeFilterDataProvider;
+    private static FilterDataProviderInterface $statusFilterDataProvider;
+    private static FilterDataProviderInterface $searchTypeSelectorDataProvider;
 
-    private static ServiceFilterDataProvider $serviceFilterDataProvider;
-    private static ModeFilterDataProvider $modeFilterDataProvider;
-    private static StatusFilterDataProvider $statusFilterDataProvider;
-    private static SearchTypeSelectorDataProvider $searchTypeSelectorDataProvider;
-
-//    public function __construct(
-//        ServiceFilterDataProvider $serviceFilterDataProvider,
-//        ModeFilterDataProvider $modeFilterDataProvider,
-//        StatusFilterDataProvider $statusFilterDataProvider,
-//        SearchTypeSelectorDataProvider $searchTypeSelectorDataProvider
-//    ) {
-//    }
-
+    /**
+     * Initialization
+     *
+     * @param array $requestParams
+     * @return static
+     * @TO-DO utilize Generator for providers with [Provider::class => Decorator::class] config
+     */
     public static function init(array $requestParams) : self
     {
         self::$requestParams = $requestParams;
 
-        $serviceDecorator = AbstractFilterDecorator::init('ServiceFilterDecorator');
         self::$serviceFilterDataProvider = AbstractFilterDataProvider::init(
-            'ServiceFilterDataProvider',
-            ['decorator' => $serviceDecorator]
+            ServiceFilterDataProvider::class,
+            ['decorator' => ServiceFilterDecorator::class]
         );
 
-        $modeDecorator = AbstractFilterDecorator::init('ModeFilterDecorator');
         self::$modeFilterDataProvider = AbstractFilterDataProvider::init(
-            'ModeFilterDataProvider',
-            ['decorator' => $modeDecorator]
+            ModeFilterDataProvider::class,
+            ['decorator' => ModeFilterDecorator::class]
         );
 
-        $statusDecorator = AbstractFilterDecorator::init('StatusFilterDecorator');
         self::$statusFilterDataProvider = AbstractFilterDataProvider::init(
-            'StatusFilterDataProvider',
-            ['decorator' => $statusDecorator]
+            StatusFilterDataProvider::class,
+            ['decorator' => StatusFilterDecorator::class]
         );
 
-        $searchTypeFilterDecorator = AbstractFilterDecorator::init('SearchTypeFilterDecorator');
         self::$searchTypeSelectorDataProvider = AbstractFilterDataProvider::init(
-            'SearchTypeSelectorDataProvider',
-            ['decorator' => $searchTypeFilterDecorator]
+            SearchTypeSelectorDataProvider::class,
+            ['decorator' => SearchTypeFilterDecorator::class]
         );
 
         return new self();
     }
 
+    /**
+     * Provides data-config for view
+     *
+     * @return array
+     */
     public function getViewConfig() : array
     {
-        ini_set('memory_limit', 1170000000);
-
         $searchModel = OrdersDataProvider::init(self::$requestParams);
 
         return [

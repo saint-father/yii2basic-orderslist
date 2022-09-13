@@ -6,8 +6,16 @@ use Yii;
 
 class ModeFilterDecorator extends AbstractFilterDecorator
 {
+    /**
+     * Filter specific URL param name
+     */
     const URL_PARAM = 'mode';
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return FilterDecoratorInterface
+     */
     public function setFilterParam() : FilterDecoratorInterface
     {
         $this->urlParam = self::URL_PARAM;
@@ -15,6 +23,13 @@ class ModeFilterDecorator extends AbstractFilterDecorator
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array $item
+     * @return array
+     * @throws \Exception
+     */
     public function itemDecorator(array $item) : array
     {
         $filterItem = parent::itemDecorator($item);

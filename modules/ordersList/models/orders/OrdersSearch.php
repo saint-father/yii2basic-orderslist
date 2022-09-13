@@ -2,6 +2,7 @@
 
 namespace app\modules\ordersList\models\orders;
 
+use app\modules\ordersList\models\dataProviders\SearchTypeSelectorDataProvider;
 use yii\base\Model;
 
 /**
@@ -12,13 +13,13 @@ class OrdersSearch extends Orders
     /**
      * {@inheritdoc}
      */
-//    public function rules()
-//    {
-//        return [
-//            [['id', 'user_id', 'quantity', 'service_id', 'status', 'created_at', 'mode'], 'integer'],
-//            [['link', 'user', 'service_id', 'status'], 'safe'],
-//        ];
-//    }
+    public function rules()
+    {
+        return [
+            [['id', 'user_id', 'quantity', 'service_id', 'status', 'created_at', 'mode'], 'integer'],
+            [['link', 'user', 'service_id', 'status'], 'safe'],
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -30,6 +31,8 @@ class OrdersSearch extends Orders
     }
 
     /**
+     * Returns query object with filters by requested params
+     *
      * @param $params
      * @return OrdersQuery
      */
@@ -43,13 +46,13 @@ class OrdersSearch extends Orders
             $search = $params['search'];
             $searchType = $params['searchType'];
             switch ($searchType) {
-                case Orders::SEARCH_ORDER_ID:
+                case SearchTypeSelectorDataProvider::SEARCH_ORDER_ID:
                     $query->andWhere(['orders.id' => $search]);
                     break;
-                case Orders::SEARCH_LINK:
+                case SearchTypeSelectorDataProvider::SEARCH_LINK:
                     $query->andWhere(['like', 'link', $search]);
                     break;
-                case Orders::SEARCH_USERNAME:
+                case SearchTypeSelectorDataProvider::SEARCH_USERNAME:
                     if (strpos($search, ' ')) {
                         $userName = explode(' ', $search);
                         $query

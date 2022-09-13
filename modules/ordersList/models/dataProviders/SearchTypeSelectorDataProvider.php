@@ -2,16 +2,23 @@
 
 namespace app\modules\ordersList\models\dataProviders;
 
-use app\modules\ordersList\models\dataProviders\FilterDataProviderInterface;
-
 class SearchTypeSelectorDataProvider extends AbstractFilterDataProvider implements FilterDataProviderInterface
 {
+    public const SEARCH_ORDER_ID = 0;
+    public const SEARCH_LINK = 1;
+    public const SEARCH_USERNAME = 2;
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return array[]
+     */
     public function getDataItems() : array
     {
         return [
-                0 => 'orders.search_order_id',
-                1 => 'orders.search_link',
-                2 => 'orders.search_username',
+                self::SEARCH_ORDER_ID => 'orders.search_order_id',
+                self::SEARCH_LINK => 'orders.search_link',
+                self::SEARCH_USERNAME => 'orders.search_username',
             ];
     }
 }

@@ -13,7 +13,7 @@ interface FilterDataProviderInterface
      * @param array $config
      * @return mixed
      */
-    public static function init(string $providerName, array $config = []);
+    public static function init(string $providerName, array $config = []) : self;
 
     /**
      * Set result data decorator
@@ -21,7 +21,7 @@ interface FilterDataProviderInterface
      * @param FilterDecoratorInterface $decorator
      * @return $this
      */
-    public function setDecorator(FilterDecoratorInterface $decorator) : self;
+    public function setDecorator(string $decorator) : self;
 
     /**
      * Get source data Items without decoration

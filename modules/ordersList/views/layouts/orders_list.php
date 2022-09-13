@@ -6,11 +6,10 @@
 use app\modules\ordersList\assets\OrdersListIE9Asset;
 use app\modules\ordersList\assets\OrdersListAsset;
 use yii\bootstrap5\Html;
+use yii\helpers\Url;
 
 OrdersListIE9Asset::register($this);
 OrdersListAsset::register($this);
-$t = Html::a(Yii::t('common', 'Orders'), \yii\helpers\Url::to(''));
-
 ?>
 
 <?php $this->beginPage() ?>
@@ -51,7 +50,10 @@ $t = Html::a(Yii::t('common', 'Orders'), \yii\helpers\Url::to(''));
             <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <?= Html::a(Yii::t('common', 'Orders'), \yii\helpers\Url::current(['all' => '1'])) ?>
+                        <?= Html::a(
+                            Yii::t('common', 'Orders'),
+                            Url::current(array_fill_keys(array_keys(Yii::$app->request->get()), null))
+                        ) ?>
                     </li>
                 </ul>
             </div>
