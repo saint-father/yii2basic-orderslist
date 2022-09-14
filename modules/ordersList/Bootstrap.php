@@ -17,7 +17,6 @@ class Bootstrap implements BootstrapInterface
                 [
                     'class' => 'app\modules\ordersList\components\OrdersListUrlRule',
                 ],
-                '<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
             ]
         );
     }

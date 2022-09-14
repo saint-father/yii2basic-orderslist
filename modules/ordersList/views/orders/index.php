@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\ordersList\models\lang\Lang;
 use app\modules\ordersList\models\orders\OrdersSearch;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -29,7 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <li class="pull-right custom-search">
             <?php $form = ActiveForm::begin([
                 'method' => 'get',
-                'action' => [Url::current(array_fill_keys(['search', 'searchType', 'service_id', 'mode'], null))],
+                'action' => [Url::current(array_merge(
+                    array_fill_keys(['search', 'searchType', 'service_id', 'mode'], null),
+                    ['lang_id' => Lang::getCurrent()->id]
+                ))],
                 'options' => ['class' => 'form-inline'],
             ]) ?>
             <div class="input-group">

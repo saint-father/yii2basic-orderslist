@@ -5,16 +5,20 @@
 
 use app\modules\ordersList\assets\OrdersListIE9Asset;
 use app\modules\ordersList\assets\OrdersListAsset;
+use app\modules\ordersList\models\lang\Lang;
+use app\modules\ordersList\widgets\WLang;
 use yii\bootstrap5\Html;
 use yii\helpers\Url;
 
 OrdersListIE9Asset::register($this);
 OrdersListAsset::register($this);
+
+$currentLang = Lang::getCurrent();
 ?>
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= $currentLang->local ?>">
 <head>
     <?php $this->registerCsrfMetaTags() ?>
     <meta charset="<?= Yii::$app->charset ?>">
@@ -39,23 +43,19 @@ OrdersListAsset::register($this);
 <header>
     <nav class="navbar navbar-fixed-top navbar-default">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
             <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
                         <?= Html::a(
                             Yii::t('common', 'Orders'),
-                            Url::current(array_fill_keys(array_keys(Yii::$app->request->get()), null))
-                        ) ?>
+                            Url::current(array_merge(
+                                array_fill_keys(array_keys(Yii::$app->request->get()), null),
+                                ['lang_id' => $currentLang->id]
+                            )
+                        )) ?>
                     </li>
                 </ul>
+                <?= WLang::widget();?>
             </div>
         </div>
     </nav>

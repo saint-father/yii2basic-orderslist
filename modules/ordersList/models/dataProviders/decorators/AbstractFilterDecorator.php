@@ -2,6 +2,7 @@
 
 namespace app\modules\ordersList\models\dataProviders\decorators;
 
+use app\modules\ordersList\models\lang\Lang;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -20,6 +21,10 @@ abstract class AbstractFilterDecorator implements FilterDecoratorInterface
      * @var string
      */
     protected string $activeText = 'true';
+    /**
+     * @var string
+     */
+    public static string $currentLangId;
 
     /**
      * Initialize decorator instance by class name
@@ -29,6 +34,7 @@ abstract class AbstractFilterDecorator implements FilterDecoratorInterface
      */
     public static function init(string $decoratorName) : FilterDecoratorInterface
     {
+        self::$currentLangId = Lang::getCurrent()->id;
         /** @var FilterDecoratorInterface $decorator */
         $decorator = new $decoratorName();
 
@@ -65,7 +71,7 @@ abstract class AbstractFilterDecorator implements FilterDecoratorInterface
 
         return [
             'label' => Yii::t('common', ArrayHelper::getValue($item, 'label.text', 'All')),
-            'url' => [Url::current([$this->urlParam => ArrayHelper::getValue($item, 'value')])],
+            'url' => [Url::current([$this->urlParam => ArrayHelper::getValue($item, 'value'), 'lang_id' => self::$currentLangId])],
             'active' => !isset($param) ? $this->activeText : ''
         ];
     }
@@ -85,7 +91,7 @@ abstract class AbstractFilterDecorator implements FilterDecoratorInterface
             'label' => Yii::t('common',
                 ArrayHelper::getValue($item, 'label.text') ?? ArrayHelper::getValue($item, 'label', '--')
             ),
-            'url' => [Url::current([$this->urlParam => $item['value']])],
+            'url' => [Url::current([$this->urlParam => $item['value'], 'lang_id' => self::$currentLangId])],
             'active' => (isset($param) && $param == $item['value']) ? $this->activeText : '',
             'value' => $item['value'],
         ];

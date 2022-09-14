@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             [
                 'attribute' => 'orders.user',
-                'label' => 'User',
+                'label' => Yii::t('common', 'orders.user'),
                 'value' => function ($model) {
                     return $model->user->first_name . ' ' . $model->user->last_name;
                 },

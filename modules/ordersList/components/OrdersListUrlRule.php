@@ -59,7 +59,8 @@ class OrdersListUrlRule extends BaseObject implements UrlRuleInterface
             strpos($request->url, self::MODULE_URL) !== false
             && strpos($request->url, '?') !== false
         ) {
-            $parts = parse_url($request->url);
+            $pathInfo = (new LangRequest())->getLangUrl();
+            $parts = parse_url($pathInfo);
             parse_str($parts['query'], $params);
             $path = trim($parts['path'], '/');
 

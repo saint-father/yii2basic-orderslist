@@ -7,7 +7,6 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'language' => 'ru-RU',
     'bootstrap' => [
         'log',
         'app\modules\ordersList\Bootstrap',
@@ -20,6 +19,7 @@ $config = [
     'components' => [
         'request' => [
             'cookieValidationKey' => 'brY-tFfsApc6RZjkbsj_Cg5AZJa6r_ii',
+            'class' => 'app\modules\ordersList\components\LangRequest'
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -48,7 +48,7 @@ $config = [
         ],
         'db' => $db,
         'urlManager' => [
-            'class' => 'yii\web\UrlManager',
+            'class' => 'app\modules\ordersList\components\LangUrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [

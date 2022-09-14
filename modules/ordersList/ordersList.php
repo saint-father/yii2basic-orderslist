@@ -25,7 +25,6 @@ class ordersList extends Module
 
         Yii::$app->i18n->translations['common*'] = [
             'class' => PhpMessageSource::class,
-            'sourceLanguage' => 'ru',
             'basePath' => __DIR__ . '/messages',
         ];
     }
