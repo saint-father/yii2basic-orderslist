@@ -12,6 +12,7 @@ use app\modules\ordersList\models\dataProviders\decorators\FilterDecoratorInterf
 
 /**
  * Data-provider class for filters
+ * @TO-DO research how to utilize BaseObject
  */
 abstract class AbstractFilterDataProvider implements FilterDataProviderInterface
 {
