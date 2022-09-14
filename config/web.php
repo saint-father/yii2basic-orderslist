@@ -51,9 +51,6 @@ $config = [
             'class' => 'app\modules\ordersList\components\LangUrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-                '' => 'orderslist/orders',
-            ],
         ],
     ],
     'params' => $params,

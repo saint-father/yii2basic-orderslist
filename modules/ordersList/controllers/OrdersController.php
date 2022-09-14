@@ -1,8 +1,12 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\controllers;
 
-use app\modules\orders\models\searches\ServicesSearch;
 use app\modules\ordersList\models\OrdersExport;
 use app\modules\ordersList\models\OrdersListPage;
 use Yii;
@@ -21,7 +25,9 @@ class OrdersController extends Controller
      */
     public function actionIndex(): string
     {
-        return $this->render('index', OrdersListPage::init(Yii::$app->request->get())->getViewConfig());
+        $params = OrdersListPage::init(Yii::$app->request->get())->getViewConfig();
+
+        return $this->render('index', $params);
     }
 
     /**

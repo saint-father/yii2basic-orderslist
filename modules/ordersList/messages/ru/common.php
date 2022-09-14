@@ -1,4 +1,13 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
+
+/**
+ * Russian language dictionary
+ */
 return [
     'Orders' => 'Заказы',
     'orders.pending_status' => 'В ожидании',

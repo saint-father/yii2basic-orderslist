@@ -1,11 +1,18 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\components;
 
 use app\modules\ordersList\models\lang\Lang;
-use Yii;
 use yii\web\Request;
 
+/**
+ * Localized URL parser
+ */
 class LangRequest extends Request
 {
     /**

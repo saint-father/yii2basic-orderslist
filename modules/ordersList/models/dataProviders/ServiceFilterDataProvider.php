@@ -1,10 +1,18 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models\dataProviders;
 
 use app\modules\ordersList\models\services\Services;
 use app\modules\ordersList\models\services\ServicesQuery;
 
+/**
+ * {@inheritdoc}
+ */
 class ServiceFilterDataProvider extends AbstractFilterDataProvider
 {
     /**
@@ -19,7 +27,6 @@ class ServiceFilterDataProvider extends AbstractFilterDataProvider
 
     /**
      * {@inheritdoc}
-     *
      * @return array[]
      */
     public function getDataItems() : array
@@ -29,7 +36,6 @@ class ServiceFilterDataProvider extends AbstractFilterDataProvider
 
     /**
      * {@inheritdoc}
-     *
      * @return array[]
      */
     public function getItems(): array

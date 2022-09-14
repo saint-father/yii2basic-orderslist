@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList;
 
@@ -7,7 +12,7 @@ use yii\base\Module;
 use yii\i18n\PhpMessageSource;
 
 /**
- * orderslist module definition class
+ * "orderslist" module definition class
  */
 class ordersList extends Module
 {

@@ -1,10 +1,18 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models\orders;
 
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
 
+/**
+ * Data-provider class for orders list GridView
+ */
 class OrdersDataProvider
 {
     /**

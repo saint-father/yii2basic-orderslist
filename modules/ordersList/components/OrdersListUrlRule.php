@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\components;
 
@@ -6,6 +11,9 @@ use Yii;
 use yii\web\UrlRuleInterface;
 use yii\base\BaseObject;
 
+/**
+ * Module specific URL generator and parser
+ */
 class OrdersListUrlRule extends BaseObject implements UrlRuleInterface
 {
     const MODULE_URL = 'orderslist/orders';
@@ -55,11 +63,12 @@ class OrdersListUrlRule extends BaseObject implements UrlRuleInterface
      */
     public function parseRequest($manager, $request)
     {
+        $pathInfo = (new LangRequest())->getLangUrl();
+
         if (
-            strpos($request->url, self::MODULE_URL) !== false
-            && strpos($request->url, '?') !== false
+            strpos($pathInfo, self::MODULE_URL) !== false
+            && strpos($pathInfo, '?') !== false
         ) {
-            $pathInfo = (new LangRequest())->getLangUrl();
             $parts = parse_url($pathInfo);
             parse_str($parts['query'], $params);
             $path = trim($parts['path'], '/');

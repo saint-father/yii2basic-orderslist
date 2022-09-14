@@ -1,10 +1,18 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models\dataProviders;
 
 use app\modules\ordersList\models\dataProviders\decorators\AbstractFilterDecorator;
 use app\modules\ordersList\models\dataProviders\decorators\FilterDecoratorInterface;
 
+/**
+ * Data-provider class for filters
+ */
 abstract class AbstractFilterDataProvider implements FilterDataProviderInterface
 {
     /**

@@ -1,9 +1,17 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models\dataProviders\decorators;
 
 use yii\bootstrap5\Html;
 
+/**
+ * {@inheritdoc}
+ */
 class ServiceFilterDecorator extends AbstractFilterDecorator
 {
     /**

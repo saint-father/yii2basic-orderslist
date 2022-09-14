@@ -1,10 +1,14 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models\users;
 
 use app\modules\ordersList\models\orders\Orders;
 use app\modules\ordersList\models\orders\OrdersQuery;
-use app\modules\ordersList\models\users\UsersQuery;
 use Yii;
 use yii\db\ActiveRecord;
 

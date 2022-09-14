@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models\export;
 
@@ -7,6 +12,9 @@ use yii\base\Model;
 use yii\db\Query;
 use yii\web\RangeNotSatisfiableHttpException;
 
+/**
+ * Prepare responce to export data in CSV-file
+ */
 class Export extends Model
 {
     /**

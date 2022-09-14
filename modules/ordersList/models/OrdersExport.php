@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models;
 
@@ -7,6 +12,9 @@ use app\modules\ordersList\models\orders\Orders;
 use app\modules\ordersList\models\orders\OrdersDataProvider;
 use yii\web\Response;
 
+/**
+ * Orders Export action processor
+ */
 class OrdersExport
 {
     /**

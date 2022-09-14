@@ -1,4 +1,13 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
+
+/**
+ * English language dictionary
+ */
 return [
     'Orders' => 'Orders',
     'orders.pending_status' => 'Pending',

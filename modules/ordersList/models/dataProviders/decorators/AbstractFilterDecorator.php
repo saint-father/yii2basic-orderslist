@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models\dataProviders\decorators;
 
@@ -7,6 +12,9 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
+/**
+ * Decorator class for filter-items data (value and labels) decorators with common features
+ */
 abstract class AbstractFilterDecorator implements FilterDecoratorInterface
 {
     /**

@@ -1,8 +1,12 @@
 <?php
+/**
+ * @link https://perfectpanel.com/
+ * @copyright Copyright (c) 2008 Perfect Panel LLC
+ * @license https://perfectpanel.com/license/
+ */
 
 namespace app\modules\ordersList\models\services;
 
-use app\modules\ordersList\models\services\Services;
 use yii\db\ActiveQuery;
 
 /**
