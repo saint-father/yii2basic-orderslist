@@ -22,7 +22,7 @@ use yii\widgets\Menu;
                 'aria-labelledby' => 'dropdownMenu1',
                 'class' => 'dropdown-menu',
             ],
-        ]) . Html::button($headerTitle . Html::tag('span', '', ['class' => 'caret']), [
+        ]) . Html::button($headerTitle, [
             'class' => 'btn btn-th btn-default dropdown-toggle',
             'type' => "button",
             'id' => $headerButtonId,
