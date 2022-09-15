@@ -12,6 +12,9 @@ namespace app\modules\ordersList\models\dataProviders;
  */
 class ModeFilterDataProvider extends AbstractFilterDataProvider
 {
+    const MANUAL_MODE = 0;
+    const AUTO_MODE = 1;
+
     /**
      * {@inheritdoc}
      *
@@ -21,8 +24,8 @@ class ModeFilterDataProvider extends AbstractFilterDataProvider
     {
         return [
             ['label' => '',   'value' => null],
-            ['label' => 'orders.manual_mode',   'value' => 0],
-            ['label' => 'orders.auto_mode',     'value' => 1],
+            ['label' => 'orders.manual_mode',   'value' => self::MANUAL_MODE],
+            ['label' => 'orders.auto_mode',     'value' => self::AUTO_MODE],
         ];
     }
 }
