@@ -1,8 +1,8 @@
 <?php
 /**
- * @link https://perfectpanel.com/
- * @copyright Copyright (c) 2008 Perfect Panel LLC
- * @license https://perfectpanel.com/license/
+ * @link https://github.com/saint-father/yii2basic-orderslist/
+ * @copyright Copyright (c) 2022 Fedorov Alexey
+ * @license https://github.com/saint-father/yii2basic-orderslist/license/
  */
 
 namespace app\modules\ordersList\models\dataProviders\decorators;
